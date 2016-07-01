@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -6,40 +7,91 @@ public class MovimientoAcelerometro : MonoBehaviour
 {
 
     public float speed = 10.0f;
-
+    public float traslacion = 20.0f;
 
     private Rigidbody rg;
+
+    public Text VELOCIDAD;
+    public Text fps;
+
+
+    float deltaTime = 0.0f;
+    float fps1 = 0.0f;
+
+ 
+    public int carriActual;
+    public Vector3 cambioCarril;
+
+    private bool moviendo;
+
+   
+    
 
     public void Start()
     {
         rg = GetComponent<Rigidbody>();
-    }    
+
+        
+        GetComponent<Rigidbody>().velocity = new Vector3(0, 0, -30);
+        carriActual = 3;
+       
+       
+    }
 
     void Update()
     {
 
-        rg.AddForce(transform.forward * 3);
+        // transform.Translate(Vector3.forward * speed * Time.deltaTime);
+
+        
 
 
-        Vector3 dir = Vector3.zero;
+        foreach (Touch touch in Input.touches)
+        {
 
-        // we assume that the device is held parallel to the ground
-        // and the Home button is in the right hand
+            if (touch.phase == TouchPhase.Ended)
+            {
+                Vector3 pos = touch.deltaPosition;
 
-        // remap the device acceleration axis to game coordinates:
-        // 1) XY plane of the device is mapped onto XZ plane
-        // 2) rotated 90 degrees around Y axis
-        dir.x = Input.acceleration.x;
-        dir.z = Input.acceleration.y;
+                if ((Mathf.Abs(pos.x) > Mathf.Abs(pos.y)))
+                {
+                    if (pos.x > 0)
+                    {
 
-        // clamp acceleration vector to the unit sphere
-        if (dir.sqrMagnitude > 1)
-            dir.Normalize();
+                        if (carriActual > 1)
+                        {
+                            transform.Translate(new Vector3(15, 0, 0));
+                            carriActual--;
+                        }
+                            
+                        
+                    }
+                    if (pos.x < 0)
+                    {
+                        if (carriActual <5)
+                        {
+                            transform.Translate(new Vector3(-15, 0, 0));
+                            carriActual++;
+                        }
+                    }
 
-        // Make it move 10 meters per second instead of 10 meters per frame...
-        dir *= Time.deltaTime;
+                    Debug.Log(carriActual);
 
-        // Move object
-        transform.Translate(dir * speed);
+                }
+                if ((Mathf.Abs(pos.y) > Mathf.Abs(pos.x)))
+                {
+                    if (pos.y > 0)
+                    {
+                        rg.AddForce(Vector3.forward + Vector3.up);
+                        Debug.Log("Entra");
+                    }
+                }
+                
+            }
+        }
+
+
+
+
     }
 }

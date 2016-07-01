@@ -19,10 +19,12 @@ public class MovimientoJeep : MonoBehaviour
 
     //------------------------------
     public float xMax;
-    
-    
-    
 
+
+
+
+    public GameObject mula;
+    private Vector3 offset;
 
     float maxTorque = 0f;
 
@@ -33,15 +35,15 @@ public class MovimientoJeep : MonoBehaviour
 
         GetComponent<Rigidbody>().centerOfMass =  new Vector3(GetComponent<Rigidbody>().centerOfMass.x,0, GetComponent<Rigidbody>().centerOfMass.z);
         BR.motorTorque = maxTorque;
-        GetComponent<Rigidbody>().velocity = new Vector3(0, 0, -30);
 
+        offset = transform.position - mula.transform.position;
 
 
 
     }
     public void Update()
     {
-
+        transform.position=new Vector3(transform.position.x,transform.position.y,(mula.transform.position.z+offset.z));
 
         if (Input.GetButtonDown("Jump"))
         {
@@ -70,7 +72,7 @@ public class MovimientoJeep : MonoBehaviour
     public void FixedUpdate()
     {
         BR.motorTorque = maxTorque;
-        BL.motorTorque = maxTorque;      
+        BL.motorTorque = maxTorque;
 
 
         FRM.Rotate(new Vector3(FR.rpm * -4 * Time.deltaTime, 0, 0));
