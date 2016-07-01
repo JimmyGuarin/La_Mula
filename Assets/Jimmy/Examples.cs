@@ -14,40 +14,6 @@ public class Examples : MonoBehaviour {
             Debug.Log("\nfase en la que se encuentra el dedo " + touch.phase);
 
 
-            if (touch.phase == TouchPhase.Moved)
-            {
-                Vector3 pos = touch.deltaPosition;
-
-                if ( (Mathf.Abs(pos.x)>Mathf.Abs(pos.y)))
-                {
-                    if (pos.x > 0)
-                    {
-                        transform.Translate(new Vector3(5, 0, 0));
-                    }
-                    if (pos.x < 0)
-                    {
-                        transform.Translate(new Vector3(-5, 0, 0));
-                    }
-                    
-
-
-                }
-                if ((Mathf.Abs(pos.y) > Mathf.Abs(pos.x)))
-                {
-                    if (pos.y > 0)
-                    {
-                        transform.Translate(new Vector3(0, 1, 2));
-                        Debug.Log("Entra");
-                    }
-                    if (pos.y < 0)
-                    {
-                        
-                    }
-
-
-
-                }
-            }
 
 
         }

@@ -18,40 +18,80 @@ public class MovimientoAcelerometro : MonoBehaviour
     float deltaTime = 0.0f;
     float fps1 = 0.0f;
 
-    public Vector3 carril1;
-    public Vector3 carril2;
-    public Vector3 carril3;
-    public Vector3 carriActual;
+ 
+    public int carriActual;
+    public Vector3 cambioCarril;
 
     private bool moviendo;
+
+   
+    
 
     public void Start()
     {
         rg = GetComponent<Rigidbody>();
-        carril1 = transform.position + new Vector3(-10, 0, 0);
-        carril3 = transform.position;
-        carriActual = carril3;
-        carril2 = transform.position + new Vector3(-5, 0, 0);
-        moviendo = false;
+
+        
+        GetComponent<Rigidbody>().velocity = new Vector3(0, 0, -30);
+        carriActual = 3;
+       
+       
     }
 
     void Update()
     {
 
-        rg.AddForce(transform.forward * speed);
+        // transform.Translate(Vector3.forward * speed * Time.deltaTime);
+
+        
+
+
+        foreach (Touch touch in Input.touches)
+        {
+
+            if (touch.phase == TouchPhase.Ended)
+            {
+                Vector3 pos = touch.deltaPosition;
+
+                if ((Mathf.Abs(pos.x) > Mathf.Abs(pos.y)))
+                {
+                    if (pos.x > 0)
+                    {
+
+                        if (carriActual > 1)
+                        {
+                            transform.Translate(new Vector3(15, 0, 0));
+                            carriActual--;
+                        }
+                            
+                        
+                    }
+                    if (pos.x < 0)
+                    {
+                        if (carriActual <5)
+                        {
+                            transform.Translate(new Vector3(-15, 0, 0));
+                            carriActual++;
+                        }
+                    }
+
+                    Debug.Log(carriActual);
+
+                }
+                if ((Mathf.Abs(pos.y) > Mathf.Abs(pos.x)))
+                {
+                    if (pos.y > 0)
+                    {
+                        rg.AddForce(Vector3.forward + Vector3.up);
+                        Debug.Log("Entra");
+                    }
+                }
+                
+            }
+        }
 
 
 
 
-        deltaTime += Time.deltaTime;
-        deltaTime /= 2.0f;
-        fps1 = 1.0f / deltaTime;
-
-        Vector3 dir = Vector3.zero;
-        VELOCIDAD.text = rg.velocity.y + " KM/H";
-        fps.text = "" + ((int)fps1);
-
-
-        transform.Translate(new Vector3(0, 0, 10) * Time.deltaTime);
     }
 }
