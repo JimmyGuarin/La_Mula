@@ -38,6 +38,7 @@ public class MovimientoAcelerometro : MonoBehaviour
        
     }
 
+
     void Update()
     {
 
