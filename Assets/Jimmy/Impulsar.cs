@@ -32,13 +32,11 @@ public class Impulsar : MonoBehaviour {
         totalTime = 2 * vertSpeed / g;
 
         float d2 = 30 * totalTime;
-        Debug.Log("d2:" + d2);
-        Debug.Log("distancia" + distancia);
+       
 
         distancia = Mathf.Abs(distancia - d2);
 
-        Debug.Log("distanciaFinal" + distancia);
-
+       
         float horSpeed = distancia / totalTime;
      
         // calculate the horizontal speed 

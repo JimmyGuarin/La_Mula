@@ -14,10 +14,10 @@ public class Lanzador : MonoBehaviour {
 
 
     //Parametros de Calculo de Tiro Parabolico
-    public int altura = 20;
+    public int altura = 10;
     public float velocidad;
     public float distancia;
-    public float totalTime;
+    
 
 
 
@@ -25,10 +25,10 @@ public class Lanzador : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        disparar();
 
-	
-	}
+        InvokeRepeating("disparar", 1, 1);
+
+    }
 
 
 
@@ -36,39 +36,52 @@ public class Lanzador : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        
 
+       
 
 	}
 
     void disparar()
     {
 
-        Transform baseT = bases[Random.Range(0, bases.Length)];
-        float distancia =Mathf.Abs((baseT.position - transform.position).magnitude);
-        Debug.Log(distancia);
-        transform.LookAt(baseT);
 
+        int indice = Random.Range(0, bases.Length);
+        Vector3 baseT = bases[Random.Range(0,bases.Length)].position;
+        //transform.LookAt(baseT);
+        
+       
+        
+        
+        
         float g = Physics.gravity.magnitude;
         float vertSpeed = Mathf.Sqrt(2 * g * altura);
         // calculate the total time var 
-        totalTime = 2 * vertSpeed / g;
-        
+        float totalTime = 2 * vertSpeed / g;
 
-      
+        Vector3 Adelante = bases[indice].position + new Vector3(0, 0, -(30 *totalTime));
+        transform.LookAt(Adelante);
+
+
+
+        float distancia = Mathf.Abs((Adelante - transform.position).magnitude);
+
+
+
+
+
 
         float horSpeed = distancia / totalTime;
 
         // calculate the horizontal speed 
 
-        GameObject proyectilClone =(GameObject) Instantiate(proyectil, transform.position, transform.rotation);
-
+        
         Vector3 velocidad = new Vector3(0, vertSpeed, horSpeed);
-        proyectilClone.GetComponent<Rigidbody>().velocity =transform.TransformDirection(velocidad); // launch the projectile! 
+        GameObject proyectilClone = (GameObject)Instantiate(proyectil, transform.position, transform.rotation);
+        proyectilClone.GetComponent<Rigidbody>().velocity = transform.TransformDirection(velocidad);// launch the projectile! 
 
 
+        
 
-        Invoke("disparar", 1f);
     }
 
 
