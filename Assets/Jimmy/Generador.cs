@@ -38,7 +38,7 @@ public class Generador : MonoBehaviour {
 
     void Generar()
     {
-        proyectil.GetComponent<Impulsar>().Canasto = Canasto;
+
         Instantiate(proyectil, this.transform.position, proyectil.transform.rotation);
     }
 }

@@ -9,13 +9,12 @@ public class Lanzador : MonoBehaviour {
 
     public Transform[] bases;
 
-
+    public Rigidbody burra;
     public GameObject proyectil;
-
+    public GameObject puntoCaida;
 
     //Parametros de Calculo de Tiro Parabolico
     public int altura = 10;
-    public float velocidad;
     public float distancia;
     
 
@@ -26,7 +25,7 @@ public class Lanzador : MonoBehaviour {
     void Start () {
 
 
-        InvokeRepeating("disparar", 1, 1);
+        InvokeRepeating("disparar", 1, 3);
 
     }
 
@@ -58,7 +57,11 @@ public class Lanzador : MonoBehaviour {
         // calculate the total time var 
         float totalTime = 2 * vertSpeed / g;
 
-        Vector3 Adelante = bases[indice].position + new Vector3(0, 0, -(30 *totalTime));
+        Vector3 Adelante = bases[indice].position + new Vector3(0, 0, -( burra.velocity.magnitude*totalTime));
+
+        Instantiate(puntoCaida, new Vector3(Adelante.x, puntoCaida.transform.position.y, Adelante.z), puntoCaida.transform.rotation);
+
+
         transform.LookAt(Adelante);
 
 
