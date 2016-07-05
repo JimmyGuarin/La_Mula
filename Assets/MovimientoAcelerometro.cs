@@ -18,24 +18,24 @@ public class MovimientoAcelerometro : MonoBehaviour
     float deltaTime = 0.0f;
     float fps1 = 0.0f;
 
- 
+
     public int carriActual;
     public Vector3 cambioCarril;
 
     private bool moviendo;
 
-   
-    
+
+
 
     public void Start()
     {
         rg = GetComponent<Rigidbody>();
 
-        
-        GetComponent<Rigidbody>().velocity = new Vector3(0, 0, -30);
+
+        GetComponent<Rigidbody>().velocity = new Vector3(0, 0, -speed);
         carriActual = 3;
-       
-       
+
+
     }
 
 
@@ -44,7 +44,7 @@ public class MovimientoAcelerometro : MonoBehaviour
 
         // transform.Translate(Vector3.forward * speed * Time.deltaTime);
 
-        
+
 
 
         foreach (Touch touch in Input.touches)
@@ -64,12 +64,12 @@ public class MovimientoAcelerometro : MonoBehaviour
                             transform.Translate(new Vector3(15, 0, 0));
                             carriActual--;
                         }
-                            
-                        
+
+
                     }
                     if (pos.x < 0)
                     {
-                        if (carriActual <5)
+                        if (carriActual < 5)
                         {
                             transform.Translate(new Vector3(-15, 0, 0));
                             carriActual++;
@@ -87,12 +87,20 @@ public class MovimientoAcelerometro : MonoBehaviour
                         Debug.Log("Entra");
                     }
                 }
-                
+
             }
         }
 
 
 
 
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag.Equals("GameController"))
+        {
+            ManejadorSuelo.instancia.GenerarSuelo();
+        }
     }
 }
