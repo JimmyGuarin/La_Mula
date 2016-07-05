@@ -4,6 +4,12 @@ using System.Collections;
 public class Generador : MonoBehaviour {
 
 
+    public Transform[] bases;
+
+
+    
+
+
     public GameObject proyectil;
 
     public GameObject Canasto;

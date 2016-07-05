@@ -14,9 +14,7 @@ public class MovimientoJeep : MonoBehaviour
     public Transform BRM;
     public Transform BLM;
 
-    public GameObject proyectil;
-    public GameObject generador;
-
+   
     //------------------------------
     public float xMax;
 
@@ -45,23 +43,10 @@ public class MovimientoJeep : MonoBehaviour
     {
         transform.position=new Vector3(transform.position.x,transform.position.y,(mula.transform.position.z+offset.z));
 
-        if (Input.GetButtonDown("Jump"))
-        {
-            FireRocket();
-        }
-
     }
 
 
-    void FireRocket()
-    {
-        Rigidbody disparo = (Rigidbody)Instantiate(proyectil.GetComponent<Rigidbody>(), generador.transform.position, generador.transform.rotation);
-        //disparo.velocity = generador.transform.forward * speed;
-        disparo.AddForce(new Vector3(0, 2, 4) * 180);
-
-        
-    }
-
+    
     public void calcularVelocidad(float xmax)
     {
 
