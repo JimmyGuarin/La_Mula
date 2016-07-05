@@ -24,6 +24,12 @@ public class MovimientoAcelerometro : MonoBehaviour
 
     private bool moviendo;
 
+    public float fuerzaSalto;
+    public bool tocandoTierra = true;
+    private bool hasJumped = false;
+
+    
+
 
 
 
@@ -42,9 +48,24 @@ public class MovimientoAcelerometro : MonoBehaviour
     void Update()
     {
 
-        // transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        // transform.Translate(Vector3.forward * speed * Time.deltaTime
+
+        if (!tocandoTierra && GetComponent<Rigidbody>().velocity.y <= 0.1)
+        {
+            tocandoTierra = true;
+            GetComponent<Animator>().speed = 1;
 
 
+        }
+       
+
+
+
+
+    }
+
+    public void FixedUpdate()
+    {
 
 
         foreach (Touch touch in Input.touches)
@@ -83,17 +104,27 @@ public class MovimientoAcelerometro : MonoBehaviour
                 {
                     if (pos.y > 0)
                     {
-                        rg.AddForce(Vector3.forward + Vector3.up);
-                        Debug.Log("Entra");
+
+                        saltar();
                     }
                 }
 
+
             }
+
+
         }
+    }
 
 
-
-
+    void saltar()
+    {
+       
+        GetComponent<Rigidbody>().AddForce(transform.up * fuerzaSalto);
+        GetComponent<Animator>().speed = 0.3f;
+        
+        tocandoTierra = false;
+        hasJumped = false;
     }
 
     public void OnTriggerEnter(Collider other)
