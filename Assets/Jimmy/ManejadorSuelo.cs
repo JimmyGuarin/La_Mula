@@ -10,7 +10,9 @@ public class ManejadorSuelo : MonoBehaviour {
     public ArrayList terrenosLista;
     private float offset;
     public static ManejadorSuelo instancia;
-    
+
+    private float distanciaTerrenos;
+
     // Use this for initialization
 	void Start () {
 
@@ -22,6 +24,8 @@ public class ManejadorSuelo : MonoBehaviour {
         terrenosLista.Add(terrenos[0]);
         terrenosLista.Add(terrenos[1]);
         terrenosLista.Add(terrenos[2]);
+
+        distanciaTerrenos = Mathf.Abs(terrenos[0].transform.position.z - terrenos[1].transform.position.z);
     }
 	
 	// Update is called once per frame
@@ -32,8 +36,14 @@ public class ManejadorSuelo : MonoBehaviour {
 
     public void GenerarSuelo()
     {
-        GameObject t=(GameObject)Instantiate(terreno, transform.position- (Vector3.forward*offset), terreno.transform.rotation);
-        Destroy((GameObject)terrenosLista[0]);
+        GameObject pos = (GameObject)terrenosLista[2];
+
+        GameObject t=(GameObject)Instantiate(terreno,pos.transform.position-(Vector3.forward*distanciaTerrenos), terreno.transform.rotation);
+
+        GameObject aux = (GameObject)terrenosLista[0];
+
+        terrenosLista.RemoveAt(0);
+        Destroy(aux);
         terrenosLista.Add(t);
     }
 }
