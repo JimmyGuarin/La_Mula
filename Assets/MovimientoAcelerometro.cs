@@ -6,7 +6,7 @@ using System.Collections;
 public class MovimientoAcelerometro : MonoBehaviour
 {
 
-    public float speed = 10.0f;
+    public float speed = 0f;
     public float traslacion = 20.0f;
 
     private Rigidbody rg;
