@@ -8,10 +8,10 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 455562}
-  - 65: {fileID: 6501118}
+  - 65: {fileID: 6553714}
   m_Layer: 0
   m_Name: terrenov1
-  m_TagString: GameController
+  m_TagString: Destructores
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52,7 +52,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 176908}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -58.871155, y: 5.8617234, z: 85.65195}
+  m_LocalPosition: {x: 0, y: 5.8617234, z: -101.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 440132}
@@ -91,7 +91,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 185044}
   m_Mesh: {fileID: 4300000, guid: 93130f36b0e6e76409ae062ae431590f, type: 3}
---- !u!65 &6501118
+--- !u!65 &6553714
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -101,8 +101,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 73.51466, y: 4.7825327, z: 1}
-  m_Center: {x: 14.968903, y: 3.1812663, z: 0}
+  m_Size: {x: 138.9, y: 14.58, z: 1}
+  m_Center: {x: -1.8, y: 7.7, z: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
