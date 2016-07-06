@@ -24,6 +24,7 @@ public class ManejadorSuelo : MonoBehaviour {
         terrenosLista.Add(terrenos[0]);
         terrenosLista.Add(terrenos[1]);
         terrenosLista.Add(terrenos[2]);
+        terrenosLista.Add(terrenos[3]);
 
         distanciaTerrenos = Mathf.Abs(terrenos[0].transform.position.z - terrenos[1].transform.position.z);
     }
@@ -36,7 +37,7 @@ public class ManejadorSuelo : MonoBehaviour {
 
     public void GenerarSuelo()
     {
-        GameObject pos = (GameObject)terrenosLista[2];
+        GameObject pos = (GameObject)terrenosLista[3];
 
         GameObject t=(GameObject)Instantiate(terreno,pos.transform.position-(Vector3.forward*distanciaTerrenos), terreno.transform.rotation);
 
