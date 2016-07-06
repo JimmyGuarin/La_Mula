@@ -25,6 +25,7 @@ public class Lanzador : MonoBehaviour {
     void Start () {
 
 
+       // transform.position = new Vector3(transform.position.x, bases[3].position.y, transform.position.z);
         InvokeRepeating("disparar", 1, 3);
 
     }
@@ -44,12 +45,18 @@ public class Lanzador : MonoBehaviour {
     {
 
 
+
         int indice = Random.Range(0, bases.Length);
-        Vector3 baseT = bases[Random.Range(0,bases.Length)].position;
+
+       
+
+
+
+        Vector3 baseT = bases[indice].position;
         //transform.LookAt(baseT);
         
-       
-        
+
+
         
         
         float g = Physics.gravity.magnitude;
@@ -68,13 +75,9 @@ public class Lanzador : MonoBehaviour {
 
         float distancia = Mathf.Abs((Adelante - transform.position).magnitude);
 
-
-
-
-
-
         float horSpeed = distancia / totalTime;
 
+      
         // calculate the horizontal speed 
 
         
