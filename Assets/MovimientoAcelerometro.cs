@@ -13,7 +13,7 @@ public class MovimientoAcelerometro : MonoBehaviour
 
     public Text VELOCIDAD;
     public Text fps;
-
+    public Text desplazamiento;
 
     float deltaTime = 0.0f;
     float fps1 = 0.0f;
@@ -21,6 +21,7 @@ public class MovimientoAcelerometro : MonoBehaviour
 
     public int carriActual;
     public Vector2 pos;
+    public Vector2 desplazar;
 
     private bool moviendo;
 
@@ -38,7 +39,7 @@ public class MovimientoAcelerometro : MonoBehaviour
         rg = GetComponent<Rigidbody>();
 
         pos = Vector2.zero;
-
+        desplazar = pos;
         carriActual = 3;
 
 
@@ -66,56 +67,70 @@ public class MovimientoAcelerometro : MonoBehaviour
             GetComponent<Rigidbody>().velocity = new Vector3(0, 0, -speed);
 
 
-
-        //foreach (Touch touch in Input.touches)
-        //{
-
-
-        //if (touch.phase == TouchPhase.Ended)
-        if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Ended)
+        if (Input.touchCount==1)
         {
-
-            if (pos == Input.GetTouch(0).deltaPosition)
-                return;
-            else
+            fps.text = Input.GetTouch(0).phase.ToString();
+            if (Input.GetTouch(0).phase == TouchPhase.Began)
             {
-                pos = Input.GetTouch(0).deltaPosition;
+                pos = Vector2.zero;
             }
+            pos += Input.GetTouch(0).deltaPosition;
 
-            if ((Mathf.Abs(pos.x) > Mathf.Abs(pos.y)))
+            if (Input.GetTouch(0).phase == TouchPhase.Ended)
             {
-                if (pos.x > 0)
+                if (desplazar == pos)
                 {
+                    desplazar = Vector2.zero;
+                    return;
+                }
+                else
+                {
+                    desplazar = pos;
+                }    
 
-                    if (carriActual > 1)
+                
+                desplazamiento.text = "" + pos;
+
+                if (desplazar == Input.GetTouch(0).deltaPosition)
+                    return;
+               
+
+                if ((Mathf.Abs(desplazar.x) > Mathf.Abs(desplazar.y)))
+                {
+                    if (desplazar.x > 0)
                     {
-                        transform.Translate(new Vector3(-15, 0, 0));
-                        carriActual--;
 
+                        if (carriActual > 1)
+                        {
+                            transform.Translate(new Vector3(-15, 0, 0));
+                            carriActual--;
+                            return;
+                        }
+
+
+                    }
+                    if (desplazar.x < 0)
+                    {
+                        if (carriActual < 5)
+                        {
+                            transform.Translate(new Vector3(15, 0, 0));
+                            carriActual++;
+                            return;
+
+                        }
                     }
 
 
+
                 }
-                if (pos.x < 0)
+                if ((Mathf.Abs(desplazar.y) > Mathf.Abs(desplazar.x)))
                 {
-                    if (carriActual < 5)
+                    if (desplazar.y > 0)
                     {
-                        transform.Translate(new Vector3(15, 0, 0));
-                        carriActual++;
+                        if (tocandoTierra)
+                            saltar();
 
                     }
-                }
-
-
-
-            }
-            if ((Mathf.Abs(pos.y) > Mathf.Abs(pos.x)))
-            {
-                if (pos.y > 0)
-                {
-                    if(tocandoTierra)
-                         saltar();
-
                 }
             }
 
