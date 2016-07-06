@@ -12,6 +12,7 @@ GameObject:
   - 65: {fileID: 6595732}
   - 23: {fileID: 2315340}
   - 54: {fileID: 5414746}
+  - 114: {fileID: 11462482}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Obtaculo
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 187042}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.9100552, y: 8.790068, z: 452.5207}
-  m_LocalScale: {x: 3.033131, y: 3.03313, z: 3.03313}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -73,12 +74,12 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Constraints: 112
+  m_CollisionDetection: 1
 --- !u!65 &6595732
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -91,6 +92,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &11462482
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 187042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90b0ca9379cb4574ba59b93caf83055b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosion: {fileID: 172364, guid: 7848bea6d66a4a84c89c735f1873ec2e, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
