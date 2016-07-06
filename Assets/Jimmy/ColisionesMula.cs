@@ -18,7 +18,7 @@ public class ColisionesMula : MonoBehaviour {
     {
         if (other.gameObject.tag.Equals("Destructores"))
         {
-            Debug.Log("Crear");
+
             ManejadorSuelo.instancia.GenerarSuelo();
         }
     }
