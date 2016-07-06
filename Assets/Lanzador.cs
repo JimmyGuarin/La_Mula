@@ -45,12 +45,18 @@ public class Lanzador : MonoBehaviour {
     {
 
 
+
         int indice = Random.Range(0, bases.Length);
+
+       
+
+
+
         Vector3 baseT = bases[indice].position;
         //transform.LookAt(baseT);
         
 
-        Debug.Log(burra.velocity.magnitude);
+
         
         
         float g = Physics.gravity.magnitude;

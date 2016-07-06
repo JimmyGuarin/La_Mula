@@ -20,7 +20,7 @@ public class MovimientoAcelerometro : MonoBehaviour
 
 
     public int carriActual;
-    public Vector3 cambioCarril;
+    public Vector2 pos;
 
     private bool moviendo;
 
@@ -28,7 +28,7 @@ public class MovimientoAcelerometro : MonoBehaviour
     public bool tocandoTierra = true;
     private bool hasJumped = false;
 
-    
+
 
 
 
@@ -37,8 +37,8 @@ public class MovimientoAcelerometro : MonoBehaviour
     {
         rg = GetComponent<Rigidbody>();
 
+        pos = Vector2.zero;
 
-        GetComponent<Rigidbody>().velocity = new Vector3(0, 0, -speed);
         carriActual = 3;
 
 
@@ -48,16 +48,11 @@ public class MovimientoAcelerometro : MonoBehaviour
     void Update()
     {
 
-        // transform.Translate(Vector3.forward * speed * Time.deltaTime
-
-        if (!tocandoTierra && GetComponent<Rigidbody>().velocity.y <= 0.1)
-        {
-            tocandoTierra = true;
-            GetComponent<Animator>().speed = 1;
 
 
-        }
-       
+
+        
+
 
 
 
@@ -67,62 +62,83 @@ public class MovimientoAcelerometro : MonoBehaviour
     public void FixedUpdate()
     {
 
+        if (tocandoTierra)
+            GetComponent<Rigidbody>().velocity = new Vector3(0, 0, -speed);
 
-        foreach (Touch touch in Input.touches)
+
+
+        //foreach (Touch touch in Input.touches)
+        //{
+
+
+        //if (touch.phase == TouchPhase.Ended)
+        if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Ended)
         {
 
-            if (touch.phase == TouchPhase.Ended)
+            if (pos == Input.GetTouch(0).deltaPosition)
+                return;
+            else
             {
-                Vector3 pos = touch.deltaPosition;
+                pos = Input.GetTouch(0).deltaPosition;
+            }
 
-                if ((Mathf.Abs(pos.x) > Mathf.Abs(pos.y)))
+            if ((Mathf.Abs(pos.x) > Mathf.Abs(pos.y)))
+            {
+                if (pos.x > 0)
                 {
-                    if (pos.x > 0)
+
+                    if (carriActual > 1)
                     {
-
-                        if (carriActual > 1)
-                        {
-                            transform.Translate(new Vector3(15, 0, 0));
-                            carriActual--;
-                        }
-
+                        transform.Translate(new Vector3(-15, 0, 0));
+                        carriActual--;
 
                     }
-                    if (pos.x < 0)
-                    {
-                        if (carriActual < 5)
-                        {
-                            transform.Translate(new Vector3(-15, 0, 0));
-                            carriActual++;
-                        }
-                    }
 
-                    Debug.Log(carriActual);
 
                 }
-                if ((Mathf.Abs(pos.y) > Mathf.Abs(pos.x)))
+                if (pos.x < 0)
                 {
-                    if (pos.y > 0)
+                    if (carriActual < 5)
                     {
+                        transform.Translate(new Vector3(15, 0, 0));
+                        carriActual++;
 
-                        saltar();
                     }
                 }
+
 
 
             }
+            if ((Mathf.Abs(pos.y) > Mathf.Abs(pos.x)))
+            {
+                if (pos.y > 0)
+                {
+                    if(tocandoTierra)
+                         saltar();
 
+                }
+            }
+
+            Debug.Log("Carril " + carriActual);
+            Debug.Log("Pos " + pos);
 
         }
+
+
+
+
+        //}
+        if (tocandoTierra)
+            transform.position = new Vector3(transform.position.x, -0.36f, transform.position.z);
     }
 
 
     void saltar()
     {
-       
-        GetComponent<Rigidbody>().AddForce(transform.up * fuerzaSalto);
-        GetComponent<Animator>().speed = 0.3f;
-        
+
+        GetComponent<Rigidbody>().velocity = new Vector3(0, fuerzaSalto, -speed);
+        GetComponentInChildren<Animator>().speed = 0.3f;
+
         tocandoTierra = false;
         hasJumped = false;
     }
@@ -133,5 +149,12 @@ public class MovimientoAcelerometro : MonoBehaviour
         {
             ManejadorSuelo.instancia.GenerarSuelo();
         }
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log(collision.gameObject.name);
+        tocandoTierra = true;
+        GetComponentInChildren<Animator>().speed = 1;
     }
 }
