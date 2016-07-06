@@ -19,7 +19,7 @@ public class ActivarExplosión : MonoBehaviour
         {
             Instantiate(explosion, transform.position, transform.rotation);
            
-            Destroy(gameObject);
+           Destroy(gameObject);
         }
         
     }
