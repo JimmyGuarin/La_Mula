@@ -7,6 +7,8 @@ public class HUD1 : MonoBehaviour {
     public int encholadas;
     public static HUD1 instancia;
     public Text TextAtrapadas;
+    public Text textoToques;
+
 
     // Use this for initialization
     void Start()
@@ -16,16 +18,22 @@ public class HUD1 : MonoBehaviour {
         instancia = this;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+   
 
     public void Encholar()
     {
         encholadas++;
         TextAtrapadas.text = ""+encholadas;
 
+    }
+
+
+
+
+
+    float deltaPosSum;
+    public GUIText t, t2;
+    void Update() {
+        
     }
 }
