@@ -27,7 +27,7 @@ public class Impulsar : MonoBehaviour
 
     }
 
-   
+
 
     public void OnTriggerEnter(Collider other)
     {
@@ -37,6 +37,14 @@ public class Impulsar : MonoBehaviour
             Debug.Log("Entra");
             HUD1.instancia.Encholar();
             Destroy(this.gameObject);
+        }
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name.Equals("Suelo"))
+        {
+            HUD1.instancia.Perdida();
         }
     }
 }
