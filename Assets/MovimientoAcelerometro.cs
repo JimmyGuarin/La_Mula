@@ -43,7 +43,7 @@ public class MovimientoAcelerometro : MonoBehaviour
     public float offset;
     public Vector3 carrilAMover;
     public Vector3 carrilActual;
-    GameObject Jeep;
+   
 
 
 
@@ -56,8 +56,8 @@ public class MovimientoAcelerometro : MonoBehaviour
         desplazar = pos;
         carriActual = 2;
         Debug.Log(carriActual);
-        Jeep = GameObject.Find("jeep");
-        offset = Jeep.transform.position.z - transform.position.z;
+        
+        
 
 
     }
@@ -172,7 +172,7 @@ public class MovimientoAcelerometro : MonoBehaviour
                 carrilActual = transform.position;
             }
         }
-        transform.position = new Vector3(transform.position.x, transform.position.y, Jeep.transform.position.z - offset);
+       
 
 
 
