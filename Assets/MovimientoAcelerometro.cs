@@ -30,6 +30,20 @@ public class MovimientoAcelerometro : MonoBehaviour
     private bool hasJumped = false;
 
 
+    Vector2 PosicionInicial;
+    [SerializeField] float SwipeMinY;
+    [SerializeField] float SwipeMinX;
+
+    Vector2 deltaposition = new Vector2(0,0);
+    float speedH = 0;
+
+
+    bool mover = false;
+
+    public float offset;
+    public Vector3 carrilAMover;
+    public Vector3 carrilActual;
+    GameObject Jeep;
 
 
 
@@ -40,7 +54,10 @@ public class MovimientoAcelerometro : MonoBehaviour
 
         pos = Vector2.zero;
         desplazar = pos;
-        carriActual = 3;
+        carriActual = 2;
+        Debug.Log(carriActual);
+        Jeep = GameObject.Find("jeep");
+        offset = Jeep.transform.position.z - transform.position.z;
 
 
     }
@@ -49,113 +66,141 @@ public class MovimientoAcelerometro : MonoBehaviour
     void Update()
     {
 
-
-
-
         
-
-
-
-
-
     }
 
     public void FixedUpdate()
     {
 
         if (tocandoTierra)
-            GetComponent<Rigidbody>().velocity = new Vector3(0, 0, -speed);
-
-
-        if (Input.touchCount==1)
         {
-            fps.text = Input.GetTouch(0).phase.ToString();
-            if (Input.GetTouch(0).phase == TouchPhase.Began)
+            GetComponent<Rigidbody>().velocity = new Vector3(0, 0, -speed);
+            hasJumped = false;
+        }
+            
+
+        
+
+        if (Input.touchCount > 0)
+        {
+            Touch t = Input.touches[0];
+            
+
+            if (t.phase == TouchPhase.Began)
             {
-                pos = Vector2.zero;
+                PosicionInicial = t.position;
             }
-            pos += Input.GetTouch(0).deltaPosition;
+            else if (t.phase == TouchPhase.Ended)
 
-            if (Input.GetTouch(0).phase == TouchPhase.Ended)
             {
-                if (desplazar == pos)
-                {
-                    desplazar = Vector2.zero;
-                    return;
-                }
-                else
-                {
-                    desplazar = pos;
-                }    
-
                 
-                desplazamiento.text = "" + pos;
-
-                if (desplazar == Input.GetTouch(0).deltaPosition)
-                    return;
-               
-
-                if ((Mathf.Abs(desplazar.x) > Mathf.Abs(desplazar.y)))
+                float swipeVertical = (new Vector3(0, t.position.y, 0) - new Vector3(0, PosicionInicial.y, 0)).magnitude;
+                if (swipeVertical > SwipeMinY)
                 {
-                    if (desplazar.x > 0)
-                    {
-
-                        if (carriActual > 1)
-                        {
-                            transform.Translate(new Vector3(-15, 0, 0));
-                            carriActual--;
-                            return;
-                        }
-
-
-                    }
-                    if (desplazar.x < 0)
-                    {
-                        if (carriActual < 5)
-                        {
-                            transform.Translate(new Vector3(15, 0, 0));
-                            carriActual++;
-                            return;
-
-                        }
-                    }
-
-
-
-                }
-                if ((Mathf.Abs(desplazar.y) > Mathf.Abs(desplazar.x)))
-                {
-                    if (desplazar.y > 0)
+                    float u = Mathf.Sign(t.position.y - PosicionInicial.y);
+                    if (u > 0)
                     {
                         if (tocandoTierra)
                             saltar();
+                    }
+                    if (u < 0)
+                    {
 
+                        //Moverse hacia abajo
+                    }
+                }
+
+                float swipeHorizontal = (new Vector3(t.position.x, 0, 0) - new Vector3(PosicionInicial.x, 0, 0)).magnitude;
+                if (swipeHorizontal > SwipeMinX)
+                {
+                    float u = Mathf.Sign(t.position.x - PosicionInicial.x);
+                    if (u > 0)
+                    {
+                        //Moverse hacia la derecha
+                        if (carriActual <= 2 &&deltaposition!=t.deltaPosition)
+                        {
+
+                            Mover(new Vector3(-16, 0, 0));
+                            Camera.main.GetComponent<Camara>().Mover(new Vector3(10, 0, 0));
+                            deltaposition = t.deltaPosition;
+                            carriActual++;
+
+                            Debug.Log(carriActual);
+                          
+                            
+                        }
+                        else
+                        {
+                            //Esta en el carril3
+                        }
+
+                    }
+                    if (u < 0)
+                    {
+
+                        //Moverse hacia la izquierda
+                        if (carriActual >= 2 && deltaposition != t.deltaPosition)
+                        {
+
+                            Mover(new Vector3(16, 0, 0));
+                            Camera.main.GetComponent<Camara>().Mover(new Vector3(10, 0, 0));
+                            deltaposition = t.deltaPosition;
+                            carriActual--;
+                            Debug.Log(carriActual);
+                           
+                         
+                        }
+                        else
+                        {
+                            //esta en el Carril1
+                        }
                     }
                 }
             }
-
-            Debug.Log("Carril " + carriActual);
-            Debug.Log("Pos " + pos);
-
+            
         }
 
+        if (mover)
+        {
+            float speedT = 30 * Time.deltaTime;
+
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(carrilAMover.x, transform.position.y, transform.position.z), speedT);
+            if (transform.position.x == carrilAMover.x)
+            {
+                
+                mover = false;
+                carrilActual = transform.position;
+            }
+        }
+        transform.position = new Vector3(transform.position.x, transform.position.y, Jeep.transform.position.z - offset);
 
 
 
-        //}
-        if (tocandoTierra)
-            transform.position = new Vector3(transform.position.x, -0.36f, transform.position.z);
+
     }
+
+    public void Mover(Vector3 objetivo)
+    {
+        carrilAMover = carrilActual + objetivo;
+        mover = true;
+
+    }
+
+
+
 
 
     void saltar()
     {
+        if(!hasJumped)
+        {
+            GetComponent<Rigidbody>().velocity = new Vector3(0, fuerzaSalto, -speed);
+            GetComponentInChildren<Animator>().speed = 0.3f;
 
-        GetComponent<Rigidbody>().velocity = new Vector3(0, fuerzaSalto, -speed);
-        GetComponentInChildren<Animator>().speed = 0.3f;
-
-        tocandoTierra = false;
-        hasJumped = false;
+            tocandoTierra = false;
+            hasJumped = true;
+        }
+        
     }
 
     public void OnTriggerEnter(Collider other)
@@ -168,7 +213,7 @@ public class MovimientoAcelerometro : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.gameObject.name);
+       // Debug.Log(collision.gameObject.name);
         tocandoTierra = true;
         GetComponentInChildren<Animator>().speed = 1;
     }
