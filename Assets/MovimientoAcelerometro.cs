@@ -40,6 +40,12 @@ public class MovimientoAcelerometro : MonoBehaviour
 
     bool mover = false;
 
+    public float offset;
+    public Vector3 carrilAMover;
+    public Vector3 carrilActual;
+    GameObject Jeep;
+
+
 
 
     public void Start()
@@ -50,6 +56,8 @@ public class MovimientoAcelerometro : MonoBehaviour
         desplazar = pos;
         carriActual = 2;
         Debug.Log(carriActual);
+        Jeep = GameObject.Find("jeep");
+        offset = Jeep.transform.position.z - transform.position.z;
 
 
     }
@@ -65,7 +73,11 @@ public class MovimientoAcelerometro : MonoBehaviour
     {
 
         if (tocandoTierra)
+        {
             GetComponent<Rigidbody>().velocity = new Vector3(0, 0, -speed);
+            hasJumped = false;
+        }
+            
 
         
 
@@ -108,7 +120,8 @@ public class MovimientoAcelerometro : MonoBehaviour
                         if (carriActual <= 2 &&deltaposition!=t.deltaPosition)
                         {
 
-                            moverse(transform.position + new Vector3(-30, 0, 0));
+                            Mover(new Vector3(-16, 0, 0));
+                            Camera.main.GetComponent<Camara>().Mover(new Vector3(10, 0, 0));
                             deltaposition = t.deltaPosition;
                             carriActual++;
 
@@ -129,7 +142,8 @@ public class MovimientoAcelerometro : MonoBehaviour
                         if (carriActual >= 2 && deltaposition != t.deltaPosition)
                         {
 
-                            moverse(transform.position + new Vector3(30,0,0));
+                            Mover(new Vector3(16, 0, 0));
+                            Camera.main.GetComponent<Camara>().Mover(new Vector3(10, 0, 0));
                             deltaposition = t.deltaPosition;
                             carriActual--;
                             Debug.Log(carriActual);
@@ -146,30 +160,47 @@ public class MovimientoAcelerometro : MonoBehaviour
             
         }
 
+        if (mover)
+        {
+            float speedT = 30 * Time.deltaTime;
+
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(carrilAMover.x, transform.position.y, transform.position.z), speedT);
+            if (transform.position.x == carrilAMover.x)
+            {
+                
+                mover = false;
+                carrilActual = transform.position;
+            }
+        }
+        transform.position = new Vector3(transform.position.x, transform.position.y, Jeep.transform.position.z - offset);
+
 
 
 
     }
 
-    void moverse(Vector3 target)
+    public void Mover(Vector3 objetivo)
     {
-        float maxDistance = 50 * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, target, maxDistance);
+        carrilAMover = carrilActual + objetivo;
+        mover = true;
 
     }
-   
 
-    
+
+
 
 
     void saltar()
     {
+        if(!hasJumped)
+        {
+            GetComponent<Rigidbody>().velocity = new Vector3(0, fuerzaSalto, -speed);
+            GetComponentInChildren<Animator>().speed = 0.3f;
 
-        GetComponent<Rigidbody>().velocity = new Vector3(0, fuerzaSalto, -speed);
-        GetComponentInChildren<Animator>().speed = 0.3f;
-
-        tocandoTierra = false;
-        hasJumped = false;
+            tocandoTierra = false;
+            hasJumped = true;
+        }
+        
     }
 
     public void OnTriggerEnter(Collider other)
