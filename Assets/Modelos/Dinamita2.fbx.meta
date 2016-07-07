@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 3a945008fb8a1fe49b28ca8c7cb646d5
-timeCreated: 1467922442
+guid: 6bcb56c9d05050746870956f34ae386a
+timeCreated: 1467923858
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -10,7 +10,6 @@ ModelImporter:
     2300000: //RootNode
     3300000: //RootNode
     4300000: Dynamite
-    9500000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
@@ -35,7 +34,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 10
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
@@ -69,7 +68,7 @@ ModelImporter:
     rootMotionBoneName: 
     hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

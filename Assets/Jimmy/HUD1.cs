@@ -18,6 +18,7 @@ public class HUD1 : MonoBehaviour {
         encholadas = 0;
         instancia = this;
         textoVelocidad.text = "30 Km/h";
+        Time.timeScale = 0;
     }
 
    
@@ -40,5 +41,15 @@ public class HUD1 : MonoBehaviour {
         textoVelocidad.text = "" + valor + " Km/h";
     }
 
+    public void IniciarJuego()
+    {
+        Time.timeScale = 1;
+    }
+
+    public void Salir()
+    {
+        Application.Quit();
+        
+    }
 
 }
