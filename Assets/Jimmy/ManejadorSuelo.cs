@@ -39,7 +39,7 @@ public class ManejadorSuelo : MonoBehaviour {
     {
         GameObject pos = (GameObject)terrenosLista[3];
 
-        GameObject t=(GameObject)Instantiate(terreno,pos.transform.position-(Vector3.forward*distanciaTerrenos), terreno.transform.rotation);
+        GameObject t = (GameObject)Instantiate(terreno, pos.transform.position - (Vector3.forward * distanciaTerrenos), terreno.transform.rotation);
 
         GameObject aux = (GameObject)terrenosLista[0];
 

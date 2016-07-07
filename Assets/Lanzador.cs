@@ -46,8 +46,8 @@ public class Lanzador : MonoBehaviour {
         
 
 
-        //int indice = Random.Range(0, bases.Length);
-        int indice = 1;
+        int indice = Random.Range(0, bases.Length);
+        //int indice = 1;
         Vector3 baseT = bases[indice].position;
      
         float g = Physics.gravity.magnitude;
@@ -69,7 +69,7 @@ public class Lanzador : MonoBehaviour {
 
 
         lanzados++;
-        if (lanzados % 5 == 0)
+        if (lanzados % 5 == 0 && burra.velocity.magnitude<100)
         {
 
             StartCoroutine(cambiarVelocidad(totalTime));

@@ -28,7 +28,7 @@ public class MovimientoAcelerometro : MonoBehaviour
     public float fuerzaSalto;
     public bool tocandoTierra = true;
     private bool hasJumped = false;
-
+    private float altura;
 
     Vector2 PosicionInicial;
     [SerializeField] float SwipeMinY;
@@ -56,8 +56,8 @@ public class MovimientoAcelerometro : MonoBehaviour
         desplazar = pos;
         carriActual = 2;
         Debug.Log(carriActual);
-        
-        
+
+        altura = transform.position.y;
 
 
     }
@@ -74,8 +74,9 @@ public class MovimientoAcelerometro : MonoBehaviour
 
         if (tocandoTierra)
         {
+            transform.position = new Vector3(transform.position.x, altura, transform.position.z);
             GetComponent<Rigidbody>().velocity = new Vector3(0, 0, -speed);
-            hasJumped = false;
+           
         }
             
 
@@ -113,6 +114,7 @@ public class MovimientoAcelerometro : MonoBehaviour
                 float swipeHorizontal = (new Vector3(t.position.x, 0, 0) - new Vector3(PosicionInicial.x, 0, 0)).magnitude;
                 if (swipeHorizontal > SwipeMinX)
                 {
+
                     float u = Mathf.Sign(t.position.x - PosicionInicial.x);
                     if (u > 0)
                     {
@@ -192,14 +194,13 @@ public class MovimientoAcelerometro : MonoBehaviour
 
     void saltar()
     {
-        if(!hasJumped)
-        {
+        
             GetComponent<Rigidbody>().velocity = new Vector3(0, fuerzaSalto, -speed);
             GetComponentInChildren<Animator>().speed = 0.3f;
 
             tocandoTierra = false;
             hasJumped = true;
-        }
+        
         
     }
 
