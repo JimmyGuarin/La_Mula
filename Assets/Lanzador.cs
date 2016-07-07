@@ -43,15 +43,7 @@ public class Lanzador : MonoBehaviour {
 
     void disparar()
     {
-        lanzados++;
-
-        if (lanzados % 5 == 0)
-        {
-            burra.GetComponent<MovimientoAcelerometro>().speed+=10;
-            HUD1.instancia.CambioVelocidad((int)burra.GetComponent<MovimientoAcelerometro>().speed);
-
-
-        }
+        
 
 
         //int indice = Random.Range(0, bases.Length);
@@ -75,12 +67,27 @@ public class Lanzador : MonoBehaviour {
         GameObject proyectilClone = (GameObject)Instantiate(proyectil, transform.position, transform.rotation);
         proyectilClone.GetComponent<Rigidbody>().velocity = transform.TransformDirection(velocidad);// launch the projectile! 
 
-       
-        Debug.Log(burra.GetComponent<Rigidbody>().velocity.magnitude);
+
+        lanzados++;
+        if (lanzados % 5 == 0)
+        {
+
+            StartCoroutine(cambiarVelocidad(totalTime));
+            
+        }
 
     }
 
 
+    IEnumerator cambiarVelocidad(float time)
+    {
+        CancelInvoke("disparar");
+        yield return new WaitForSeconds(time+Time.deltaTime);
+        burra.GetComponent<MovimientoAcelerometro>().speed += 10;
+        altura +=1;
+        HUD1.instancia.CambioVelocidad((int)burra.GetComponent<MovimientoAcelerometro>().speed);
+        InvokeRepeating("disparar",1, 3);
+    }
     
 
 }

@@ -32,7 +32,7 @@ public class ManejadorSuelo : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        transform.position = mula.transform.position - Vector3.forward*offset;
+        transform.position =new Vector3(transform.position.x,transform.position.y,mula.transform.position.z -offset);
 	}
 
     public void GenerarSuelo()

@@ -121,7 +121,7 @@ public class MovimientoAcelerometro : MonoBehaviour
                         {
 
                             Mover(new Vector3(-16, 0, 0));
-                            Camera.main.GetComponent<Camara>().Mover(new Vector3(10, 0, 0));
+                            Camera.main.GetComponent<Camara>().Mover(new Vector3(-10, 0, 0));
                             deltaposition = t.deltaPosition;
                             carriActual++;
 
