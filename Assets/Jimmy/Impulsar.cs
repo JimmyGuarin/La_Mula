@@ -24,7 +24,7 @@ public class Impulsar : MonoBehaviour
     void Update()
     {
 
-
+        Invoke("Destruir", 5);
     }
 
 
@@ -46,5 +46,10 @@ public class Impulsar : MonoBehaviour
         {
             HUD1.instancia.Perdida();
         }
+    }
+
+    public void Destruir()
+    {
+        Destroy(gameObject);
     }
 }
