@@ -17,7 +17,12 @@ public class ActivarExplosión : MonoBehaviour
         
         
            Instantiate(explosion, transform.position, transform.rotation);
-          
+
+        if (collision.gameObject.tag.Equals("Player"))
+        {
+            GameObject.FindGameObjectWithTag("Player").GetComponent<MovimientoAcelerometro>().Destruida();
+        } 
+
            Destroy(gameObject);
                 
     }

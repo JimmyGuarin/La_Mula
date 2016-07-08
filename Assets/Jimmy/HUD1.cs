@@ -15,10 +15,12 @@ public class HUD1 : MonoBehaviour
     public Text textoPerdidas;
     public Text textoVelocidad;
     public GameObject panelDerrota;
+    public int velocidad;
 
     public void Awake()
     {
         DontDestroyOnLoad(this);
+        velocidad = 30;
     }
 
 
@@ -66,12 +68,15 @@ public class HUD1 : MonoBehaviour
 
     public void CambioVelocidad(int valor)
     {
-        textoVelocidad.text = "" + valor + " Km/h";
+
+        Time.timeScale += 0.2f;
+        velocidad += 10;
+        textoVelocidad.text = "" + velocidad+ " Km/h";
     }
 
     public void IniciarJuego()
     {
-        Time.timeScale = 1;
+        Time.timeScale = 1f;
     }
 
     public void Salir()

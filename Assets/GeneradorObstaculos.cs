@@ -11,17 +11,20 @@ public class GeneradorObstaculos : MonoBehaviour
     public GameObject[] basesE;
 
 
+    public float tiempoGeneracion = 3;
     private int altura = 3;
     public Rigidbody burra;
+    public GameObject casco;
 
     bool segundoObs;
+    bool bonusCaso =false;
 
     // Use this for initialization
     void Start()
     {
         
         //InvokeRepeating("crearObstaculos", 1, 4);
-        InvokeRepeating("crearObstaculosE", 1, 3);
+        InvokeRepeating("crearObstaculosE", 1,tiempoGeneracion);
     }
 
     // Update is called once per frame
@@ -69,17 +72,35 @@ public class GeneradorObstaculos : MonoBehaviour
 
         int indice = Random.Range(0, basesE.Length);
 
-        int indice2 = Random.Range(0, basesE.Length);       
+        int indice2 = Random.Range(0, basesE.Length);
+        
+               
 
         Instantiate(obstaculo, basesE[indice].transform.position, basesE[indice].transform.rotation);
+
+
         if(segundoObs)
         {
-            while (indice == indice2)
+            segundoObs = Random.value > 0.3f;
+            if (segundoObs)
             {
-                indice2 = Random.Range(0, basesE.Length);
-            }
 
-            Instantiate(obstaculo, basesE[indice2].transform.position, basesE[indice].transform.rotation);
+                while (indice == indice2)
+                {
+                    indice2 = Random.Range(0, basesE.Length);
+                }
+                Instantiate(casco, basesE[indice2].transform.position+Vector3.up*10, basesE[indice].transform.rotation);
+            }
+            else
+            {
+                while (indice == indice2)
+                {
+                    indice2 = Random.Range(0, basesE.Length);
+                }
+                obstaculo = obstaculosE[Random.Range(0, obstaculosE.Length)];
+                Instantiate(obstaculo, basesE[indice2].transform.position, basesE[indice].transform.rotation);
+            }
+            
         }
 
     }
