@@ -213,7 +213,9 @@ public class MovimientoAcelerometro : MonoBehaviour
    
         if (collision.gameObject.tag.Equals("Obtaculo"))
         {
-
+            rg.velocity = Vector3.zero;
+            transform.GetChild(1).GetComponent<Animator>().enabled = false;
+            transform.GetChild(0).gameObject.SetActive(true);
             HUD1.instancia.Perder();
         }
     }
