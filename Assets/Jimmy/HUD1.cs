@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class HUD1 : MonoBehaviour {
@@ -50,6 +51,16 @@ public class HUD1 : MonoBehaviour {
     {
         Application.Quit();
         
+    }
+
+    public void Perder()
+    {
+
+    }
+
+    public void Reiniciar()
+    {
+        SceneManager.LoadScene(0);
     }
 
 }
