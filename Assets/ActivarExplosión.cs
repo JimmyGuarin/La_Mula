@@ -17,8 +17,8 @@ public class ActivarExplosión : MonoBehaviour
         
         if (!collision.gameObject.name.Equals("Burra"))
         {
-            Instantiate(explosion, transform.position, transform.rotation);
-           
+           Instantiate(explosion, transform.position, transform.rotation);
+          
            Destroy(gameObject);
         }
         

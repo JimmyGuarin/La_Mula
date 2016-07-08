@@ -198,7 +198,6 @@ GameObject:
   - 4: {fileID: 493878}
   - 33: {fileID: 3393878}
   - 23: {fileID: 2393878}
-  - 65: {fileID: 6593878}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -328,7 +327,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 193874}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: 5.4617233, z: 23.9}
+  m_LocalPosition: {x: -1, y: 5.4617233, z: 25.2}
   m_LocalScale: {x: 2, y: 1, z: 2}
   m_Children:
   - {fileID: 493876}
@@ -783,18 +782,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 38.551743, y: 23.540985, z: 1}
   m_Center: {x: 0.22771835, y: 11.910799, z: -29.369999}
---- !u!65 &6593878
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 193878}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 61.075676, y: 50.021263, z: 100.00001}
-  m_Center: {x: 0.0000076293936, y: -25.010612, z: 49.99999}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

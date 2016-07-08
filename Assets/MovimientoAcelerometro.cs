@@ -71,107 +71,92 @@ public class MovimientoAcelerometro : MonoBehaviour
 
     public void FixedUpdate()
     {
+        if (tocandoTierra) {
 
-        if (tocandoTierra)
-        {
-            transform.position = new Vector3(transform.position.x, altura, transform.position.z);
             GetComponent<Rigidbody>().velocity = new Vector3(0, 0, -speed);
-           
+            transform.position = new Vector3(transform.position.x, altura, transform.position.z);
         }
-            
 
-        
 
-        if (Input.touchCount > 0)
+        if (Input.touchCount == 1)
         {
-            Touch t = Input.touches[0];
             
-
-            if (t.phase == TouchPhase.Began)
+            if (Input.GetTouch(0).phase == TouchPhase.Began)
             {
-                PosicionInicial = t.position;
+                pos = Vector2.zero;
             }
-            else if (t.phase == TouchPhase.Ended)
+            pos += Input.GetTouch(0).deltaPosition;
 
+            if (Input.GetTouch(0).phase == TouchPhase.Ended)
             {
-                
-                if (t.deltaPosition.x > t.deltaPosition.y || -(t.deltaPosition).x> t.deltaPosition.y)
+                if (desplazar == pos)
                 {
-                    float swipeHorizontal = (new Vector3(t.position.x, 0, 0) - new Vector3(PosicionInicial.x, 0, 0)).magnitude;
-                    if (swipeHorizontal > SwipeMinX)
-                    {
-
-                        float u = Mathf.Sign(t.position.x - PosicionInicial.x);
-                        if (u > 0)
-                        {
-                            //Moverse hacia la derecha
-                            if (carriActual <= 2 && deltaposition != t.deltaPosition)
-                            {
-
-                                Mover(new Vector3(-16, 0, 0));
-                                Camera.main.GetComponent<Camara>().Mover(new Vector3(-10, 0, 0));
-                                deltaposition = t.deltaPosition;
-                                carriActual++;
-
-                                Debug.Log(carriActual);
-
-
-                            }
-                            else
-                            {
-                                //Esta en el carril3
-                            }
-
-                        }
-                        if (u < 0)
-                        {
-
-                            //Moverse hacia la izquierda
-                            if (carriActual >= 2 && deltaposition != t.deltaPosition)
-                            {
-
-                                Mover(new Vector3(16, 0, 0));
-                                Camera.main.GetComponent<Camara>().Mover(new Vector3(10, 0, 0));
-                                deltaposition = t.deltaPosition;
-                                carriActual--;
-                                Debug.Log(carriActual);
-
-
-                            }
-                            else
-                            {
-                                //esta en el Carril1
-                            }
-                        }
-                    }
-
+                    desplazar = Vector2.zero;
+                    return;
                 }
                 else
                 {
+                    desplazar = pos;
+                }
 
 
-                    float swipeVertical = (new Vector3(0, t.position.y, 0) - new Vector3(0, PosicionInicial.y, 0)).magnitude;
-                    if (swipeVertical > SwipeMinY)
+               
+                if (desplazar == Input.GetTouch(0).deltaPosition)
+                    return;
+
+
+                if ((Mathf.Abs(desplazar.x) > Mathf.Abs(desplazar.y)))
+                {
+                    if (desplazar.x > 0)
                     {
-                        float u = Mathf.Sign(t.position.y - PosicionInicial.y);
-                        if (u > 0)
+
+                        if (carriActual > 1 && !mover)
                         {
-                            if (tocandoTierra)
-                                  saltar();
+                            Mover(new Vector3(-16, 0, 0));
+                            Camera.main.GetComponent<Camara>().Mover(new Vector3(-10, 0, 0));
+                            //transform.Translate(new Vector3(-15, 0, 0));
+                            carriActual--;
+                            return;
                         }
-                        if (u < 0)
+
+
+                    }
+                    if (desplazar.x < 0)
+                    {
+                        if (carriActual < 3&&!mover)
                         {
 
-                            //Moverse hacia abajo
+                            Mover(new Vector3(16, 0, 0));
+                            Camera.main.GetComponent<Camara>().Mover(new Vector3(10, 0, 0));
+                            //transform.Translate(new Vector3(15, 0, 0));
+                            carriActual++;
+                            return;
+
                         }
                     }
 
-                }
 
-               
+
+                }
+                if ((Mathf.Abs(desplazar.y) > Mathf.Abs(desplazar.x)))
+                {
+                    if (desplazar.y > 0)
+                    {
+                        if (tocandoTierra)
+                            saltar();
+
+                    }
+                }
             }
-            
+
+           
+
         }
+
+
+
+
+       
 
         if (mover)
         {
@@ -225,8 +210,11 @@ public class MovimientoAcelerometro : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-       // Debug.Log(collision.gameObject.name);
-        tocandoTierra = true;
-        GetComponentInChildren<Animator>().speed = 1;
+   
+        if (collision.gameObject.tag.Equals("Obtaculo"))
+        {
+
+            HUD1.instancia.Perder();
+        }
     }
 }
