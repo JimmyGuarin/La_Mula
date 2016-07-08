@@ -14,11 +14,13 @@ public class GeneradorObstaculos : MonoBehaviour
     private int altura = 3;
     public Rigidbody burra;
 
+    bool segundoObs;
+
     // Use this for initialization
     void Start()
     {
         
-        InvokeRepeating("crearObstaculos", 1, 4);
+        //InvokeRepeating("crearObstaculos", 1, 4);
         InvokeRepeating("crearObstaculosE", 1, 3);
     }
 
@@ -61,11 +63,24 @@ public class GeneradorObstaculos : MonoBehaviour
 
     void crearObstaculosE()
     {
+        segundoObs = Random.value > 0.6f; 
+
         GameObject obstaculo = obstaculosE[Random.Range(0, obstaculosE.Length)];
 
         int indice = Random.Range(0, basesE.Length);
 
+        int indice2 = Random.Range(0, basesE.Length);       
+
         Instantiate(obstaculo, basesE[indice].transform.position, basesE[indice].transform.rotation);
+        if(segundoObs)
+        {
+            while (indice == indice2)
+            {
+                indice2 = Random.Range(0, basesE.Length);
+            }
+
+            Instantiate(obstaculo, basesE[indice2].transform.position, basesE[indice].transform.rotation);
+        }
 
     }
 

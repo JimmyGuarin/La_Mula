@@ -11,6 +11,7 @@ public class Lanzador : MonoBehaviour {
 
     public Rigidbody burra;
     public GameObject proyectil;
+    public GameObject bomba;
     public GameObject puntoCaida;
 
     //Parametros de Calculo de Tiro Parabolico
@@ -20,21 +21,28 @@ public class Lanzador : MonoBehaviour {
 
     public int lanzados;
 
+    bool dinamita;
+
 
     // Use this for initialization
     void Start () {
 
-
+        
        // transform.position = new Vector3(transform.position.x, bases[3].position.y, transform.position.z);
-        InvokeRepeating("disparar", 1, 3);
+        InvokeRepeating("disparar", 1, 2);
         lanzados = 0;
+        Random gen = new Random();
+        dinamita = Random.value > 0.5f;
+       
+
+
     }
 
 
 
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update () {
 
 
        
@@ -64,8 +72,26 @@ public class Lanzador : MonoBehaviour {
 
         
         Vector3 velocidad = new Vector3(0, vertSpeed, horSpeed);
-        GameObject proyectilClone = (GameObject)Instantiate(proyectil, transform.position, transform.rotation);
-        proyectilClone.GetComponent<Rigidbody>().velocity = transform.TransformDirection(velocidad);// launch the projectile! 
+
+        dinamita = Random.value > 0.6f;
+
+        if (dinamita)
+        {
+            //bomba
+            GameObject bombaClone = (GameObject)Instantiate(bomba, transform.position + new Vector3(0, -4, 0), transform.rotation);
+            bombaClone.GetComponent<Rigidbody>().velocity = transform.TransformDirection(velocidad);
+            // launch the projectile! 
+
+        }
+        else
+        {
+            GameObject proyectilClone = (GameObject)Instantiate(proyectil, transform.position, transform.rotation);
+            proyectilClone.GetComponent<Rigidbody>().velocity = transform.TransformDirection(velocidad);// launch the projectile! 
+        }
+       
+
+       
+       
 
 
         lanzados++;
@@ -88,6 +114,8 @@ public class Lanzador : MonoBehaviour {
         HUD1.instancia.CambioVelocidad((int)burra.GetComponent<MovimientoAcelerometro>().speed);
         InvokeRepeating("disparar",1, 3);
     }
+
     
+
 
 }
