@@ -22,6 +22,7 @@ public class Lanzador : MonoBehaviour {
     public int lanzados;
 
     bool dinamita;
+    bool chocado;
 
 
     // Use this for initialization
@@ -33,7 +34,7 @@ public class Lanzador : MonoBehaviour {
         lanzados = 0;
         Random gen = new Random();
         dinamita = Random.value > 0.5f;
-       
+        
 
 
     }
@@ -62,8 +63,25 @@ public class Lanzador : MonoBehaviour {
         float vertSpeed = Mathf.Sqrt(2 * g * altura);
         // calculate the total time var 
         float totalTime = 2 * vertSpeed / g;
+
+
         Vector3 Adelante = bases[indice].position + new Vector3(0, 0, -( burra.velocity.magnitude*totalTime));
-        Instantiate(puntoCaida, new Vector3(Adelante.x, puntoCaida.transform.position.y, Adelante.z), puntoCaida.transform.rotation);
+        Vector3 puntoCae = new Vector3(Adelante.x, puntoCaida.transform.position.y, Adelante.z);
+        Collider [] co=Physics.OverlapBox(puntoCae, new Vector3(5, 10, 5));
+
+        bool colisiona = false;
+        foreach(Collider c in co)
+        {
+            if (c.gameObject.tag.Equals("Obtaculo"))
+            {
+                colisiona = true;
+                break;
+            }
+        }
+
+
+
+
         transform.LookAt(Adelante);
         float distancia = Mathf.Abs((Adelante - transform.position).magnitude);
         // calculate the horizontal speed 
@@ -72,30 +90,29 @@ public class Lanzador : MonoBehaviour {
 
         
         Vector3 velocidad = new Vector3(0, vertSpeed, horSpeed);
-
         dinamita = Random.value > 0.6f;
-
-        if (dinamita)
+        if(colisiona==false)
         {
-            //bomba
-            GameObject bombaClone = (GameObject)Instantiate(bomba, transform.position + new Vector3(0, -4, 0), transform.rotation);
-            bombaClone.GetComponent<Rigidbody>().velocity = transform.TransformDirection(velocidad);
-            // launch the projectile! 
+            Instantiate(puntoCaida, puntoCae, puntoCaida.transform.rotation);
 
+            if (dinamita)
+            {
+                //bomba
+                GameObject bombaClone = (GameObject)Instantiate(bomba, transform.position + new Vector3(0, -4, 0), transform.rotation);
+                bombaClone.GetComponent<Rigidbody>().velocity = transform.TransformDirection(velocidad);
+                // launch the projectile! 
+
+            }
+            else
+            {
+                GameObject proyectilClone = (GameObject)Instantiate(proyectil, transform.position, transform.rotation);
+                proyectilClone.GetComponent<Rigidbody>().velocity = transform.TransformDirection(velocidad);// launch the projectile! 
+
+            }
         }
-        else
-        {
-            GameObject proyectilClone = (GameObject)Instantiate(proyectil, transform.position, transform.rotation);
-            proyectilClone.GetComponent<Rigidbody>().velocity = transform.TransformDirection(velocidad);// launch the projectile! 
-        }
-       
-
-       
-       
-
 
         lanzados++;
-        if (lanzados % 5 == 0 && burra.velocity.magnitude<100)
+        if (lanzados % 5 == 0 && burra.velocity.magnitude<200)
         {
 
             StartCoroutine(cambiarVelocidad(totalTime));
@@ -109,8 +126,8 @@ public class Lanzador : MonoBehaviour {
     {
         CancelInvoke("disparar");
         yield return new WaitForSeconds(time+Time.deltaTime);
-        burra.GetComponent<MovimientoAcelerometro>().speed += 10;
-        altura +=1;
+        //burra.GetComponent<MovimientoAcelerometro>().speed += 10;
+        //altura +=1;
         HUD1.instancia.CambioVelocidad((int)burra.GetComponent<MovimientoAcelerometro>().speed);
         InvokeRepeating("disparar",1, 3);
     }

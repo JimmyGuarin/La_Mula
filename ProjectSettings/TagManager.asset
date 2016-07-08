@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Destructores
   - New Tag
+  - Obtaculo
+  - Casco
   layers:
   - Default
   - TransparentFX
