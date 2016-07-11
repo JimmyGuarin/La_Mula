@@ -76,9 +76,20 @@ public class GeneradorObstaculos : MonoBehaviour
         int indice2 = Random.Range(0, basesE.Length);
         
                
-        if(bonusB && !hayCasco() && !burra.gameObject.GetComponent<MovimientoAcelerometro>().casco.activeSelf)
+        if(bonusB && !hayBonus() )
         {
-            Instantiate(bonus[Random.Range(0,bonus.Length)], basesE[indice].transform.position + Vector3.up * 10, basesE[indice].transform.rotation);
+            if (!burra.GetComponent<MovimientoAcelerometro>().casco.activeSelf)
+            {
+                Instantiate(bonus[0], basesE[indice].transform.position + Vector3.up * 10, basesE[indice].transform.rotation);
+            }
+            else if(!burra.GetComponent<MovimientoAcelerometro>().iman.activeSelf)
+            {
+                Instantiate(bonus[1], basesE[indice].transform.position + Vector3.up * 10, basesE[indice].transform.rotation);
+            }
+            else
+            {
+                Instantiate(bonus[Random.Range(0, bonus.Length)], basesE[indice].transform.position + Vector3.up * 10, basesE[indice].transform.rotation);
+            }
 
         }
         else
@@ -92,14 +103,26 @@ public class GeneradorObstaculos : MonoBehaviour
         if(segundoObs)
         {
            
-            if (bonusB && !hayCasco() && !burra.gameObject.GetComponent<MovimientoAcelerometro>().casco.activeSelf)
-            {
+            if (bonusB && !hayBonus())
+            { 
 
                 while (indice == indice2)
                 {
                     indice2 = Random.Range(0, basesE.Length);
                 }
-                Instantiate(bonus[Random.Range(0, bonus.Length)], basesE[indice2].transform.position+Vector3.up*10, basesE[indice].transform.rotation);
+                if(!burra.GetComponent<MovimientoAcelerometro>().casco.activeSelf)
+                {
+                    Instantiate(bonus[0], basesE[indice2].transform.position + Vector3.up * 10, basesE[indice2].transform.rotation);
+                }
+                else if(!burra.GetComponent<MovimientoAcelerometro>().iman.activeSelf)
+                {
+                    Instantiate(bonus[1], basesE[indice2].transform.position + Vector3.up * 10, basesE[indice2].transform.rotation);
+                }
+                else
+                {
+                    Instantiate(bonus[Random.Range(0,bonus.Length)], basesE[indice2].transform.position + Vector3.up * 10, basesE[indice2].transform.rotation);
+                }
+                
             }
             else
             {
@@ -115,15 +138,18 @@ public class GeneradorObstaculos : MonoBehaviour
 
     }
 
-    bool hayCasco()
+    bool hayBonus()
     {
         GameObject casco = GameObject.Find("casco(Clone)");
+        GameObject iman = GameObject.Find("magnet(Clone)");
 
-        if (!casco)
+        if (!casco && !iman)
             return false;
         else
             return true;
     }
+
+    
     
 
     
