@@ -14,10 +14,10 @@ public class GeneradorObstaculos : MonoBehaviour
     public float tiempoGeneracion = 3;
     private int altura = 3;
     public Rigidbody burra;
-    public GameObject casco;
+    public GameObject[] bonus;
 
     bool segundoObs;
-    bool bonusCaso =false;
+    bool bonusB =false;
 
     // Use this for initialization
     void Start()
@@ -66,30 +66,40 @@ public class GeneradorObstaculos : MonoBehaviour
 
     void crearObstaculosE()
     {
-        segundoObs = Random.value > 0.6f; 
+        segundoObs = Random.value > 0.6f;
+        bonusB = Random.value > 0.3f;
 
-        GameObject obstaculo = obstaculosE[Random.Range(0, obstaculosE.Length)];
+        
 
         int indice = Random.Range(0, basesE.Length);
 
         int indice2 = Random.Range(0, basesE.Length);
         
                
+        if(bonusB && !burra.gameObject.GetComponent<MovimientoAcelerometro>().casco.activeSelf)
+        {
+            Instantiate(bonus[Random.Range(0,bonus.Length)], basesE[indice].transform.position + Vector3.up * 10, basesE[indice].transform.rotation);
 
-        Instantiate(obstaculo, basesE[indice].transform.position, basesE[indice].transform.rotation);
+        }
+        else
+        {
+            GameObject obstaculo = obstaculosE[Random.Range(0, obstaculosE.Length)];
+            Instantiate(obstaculo, basesE[indice].transform.position, basesE[indice].transform.rotation);
+        }
+        
 
 
         if(segundoObs)
         {
-            segundoObs = Random.value > 0.3f;
-            if (segundoObs)
+           
+            if (bonusB && !burra.gameObject.GetComponent<MovimientoAcelerometro>().casco.activeSelf)
             {
 
                 while (indice == indice2)
                 {
                     indice2 = Random.Range(0, basesE.Length);
                 }
-                Instantiate(casco, basesE[indice2].transform.position+Vector3.up*10, basesE[indice].transform.rotation);
+                Instantiate(bonus[Random.Range(0, bonus.Length)], basesE[indice2].transform.position+Vector3.up*10, basesE[indice].transform.rotation);
             }
             else
             {
@@ -97,7 +107,7 @@ public class GeneradorObstaculos : MonoBehaviour
                 {
                     indice2 = Random.Range(0, basesE.Length);
                 }
-                obstaculo = obstaculosE[Random.Range(0, obstaculosE.Length)];
+                GameObject obstaculo = obstaculosE[Random.Range(0, obstaculosE.Length)];
                 Instantiate(obstaculo, basesE[indice2].transform.position, basesE[indice].transform.rotation);
             }
             
