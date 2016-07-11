@@ -46,26 +46,26 @@ public class Impulsar : MonoBehaviour
 
 
 
-    //public void OnTriggerEnter(Collider other)
-    //{
+    public void OnTriggerEnter(Collider other)
+    {
 
-    //    if (other.gameObject.tag.Equals("Respawn"))
-    //    {
-    //        Debug.Log("Entra");
-    //        HUD1.instancia.Encholar();
-    //        Destroy(this.gameObject);
-    //    }
-    //}
+        if (other.gameObject.tag.Equals("Respawn"))
+        {
+            Debug.Log("Entra");
+            HUD1.instancia.Encholar();
+            Destroy(this.gameObject);
+        }
+    }
 
-    //public void OnCollisionEnter(Collision collision)
-    //{
-    //    if (collision.gameObject.name.Equals("Suelo"))
-    //    {
-    //        HUD1.instancia.Perdida();
-    //    }
-    //}
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name.Equals("Suelo"))
+        {
+            HUD1.instancia.Perdida();
+        }
+    }
 
-    
+
 
     public void AtraccionIman()
     {
@@ -77,11 +77,13 @@ public class Impulsar : MonoBehaviour
             objetivo = canastoDerecho.transform.position;
 
         transform.position = Vector3.MoveTowards(transform.position, objetivo, 100 * Time.deltaTime);
-        if (transform.position == objetivo)
+        if (Mathf.Abs(transform.position.z-objetivo.z)<2)
         {
             HUD1.instancia.Encholar();
             GetComponent<Rigidbody>().isKinematic = false;
+            Debug.Log("Entra");
             Destroy(this.gameObject);
+
         }
     }
 

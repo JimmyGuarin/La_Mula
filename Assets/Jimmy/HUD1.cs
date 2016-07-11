@@ -17,6 +17,7 @@ public class HUD1 : MonoBehaviour
     public GameObject panelDerrota;
     public int velocidad;
     public GameObject BonusIman;
+    public GameObject Mula;
 
     public void Awake()
     {
@@ -131,11 +132,13 @@ public class HUD1 : MonoBehaviour
         {
             Debug.Log("entra2");
             slider.value -= (float)(0.01* Time.timeScale);
-            yield return null;
+            yield return new WaitForSeconds(0.1f);
         }
 
-
+        Mula.GetComponent<MovimientoAcelerometro>().iman.SetActive(false);
         BonusIman.SetActive(false);
+        yield return null;
+        
     }
 
        
