@@ -91,7 +91,7 @@ public class MovimientoAcelerometro : MonoBehaviour
                 velocidadY-=3;
 
             GetComponent<Rigidbody>().velocity = new Vector3(0, velocidadY, -speed);
-            Debug.Log(rg.velocity.y);
+
         }
 
 
@@ -198,7 +198,12 @@ public class MovimientoAcelerometro : MonoBehaviour
         }
         if(other.gameObject.tag.Equals("Iman"))
         {
-
+            if (!iman.activeSelf)
+            {
+                iman.SetActive(true);
+                HUD1.instancia.MostrarPanelBonus();
+            }
+            Destroy(other.gameObject);
         }
     }
 

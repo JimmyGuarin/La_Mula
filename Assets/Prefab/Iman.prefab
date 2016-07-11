@@ -30,7 +30,7 @@ GameObject:
   - 65: {fileID: 6506446}
   m_Layer: 0
   m_Name: Iman
-  m_TagString: Untagged
+  m_TagString: Iman
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -54,7 +54,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 179896}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.59, y: 9.54, z: 469.32}
+  m_LocalPosition: {x: 0.2, y: 9.54, z: 445.5}
   m_LocalScale: {x: 7, y: 7, z: 7}
   m_Children:
   - {fileID: 413300}
@@ -101,7 +101,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 179896}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.9584588, y: 1.7556976, z: 0.2}
