@@ -196,6 +196,10 @@ public class MovimientoAcelerometro : MonoBehaviour
             }
             Destroy(other.gameObject);
         }
+        if(other.gameObject.tag.Equals("Iman"))
+        {
+
+        }
     }
 
     public void OnCollisionEnter(Collision collision)
@@ -204,7 +208,7 @@ public class MovimientoAcelerometro : MonoBehaviour
         if (collision.gameObject.tag.Equals("Obtaculo"))
         {
             
-            Debug.Log("Entra");
+            
             transform.GetChild(0).gameObject.SetActive(false);
             if (!casco.activeSelf)
             {
