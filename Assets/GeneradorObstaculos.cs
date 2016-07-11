@@ -76,7 +76,7 @@ public class GeneradorObstaculos : MonoBehaviour
         int indice2 = Random.Range(0, basesE.Length);
         
                
-        if(bonusB && !burra.gameObject.GetComponent<MovimientoAcelerometro>().casco.activeSelf)
+        if(bonusB && !hayCasco() && !burra.gameObject.GetComponent<MovimientoAcelerometro>().casco.activeSelf)
         {
             Instantiate(bonus[Random.Range(0,bonus.Length)], basesE[indice].transform.position + Vector3.up * 10, basesE[indice].transform.rotation);
 
@@ -92,7 +92,7 @@ public class GeneradorObstaculos : MonoBehaviour
         if(segundoObs)
         {
            
-            if (bonusB && !burra.gameObject.GetComponent<MovimientoAcelerometro>().casco.activeSelf)
+            if (bonusB && !hayCasco() && !burra.gameObject.GetComponent<MovimientoAcelerometro>().casco.activeSelf)
             {
 
                 while (indice == indice2)
@@ -115,6 +115,15 @@ public class GeneradorObstaculos : MonoBehaviour
 
     }
 
+    bool hayCasco()
+    {
+        GameObject casco = GameObject.Find("casco(Clone)");
+
+        if (!casco)
+            return false;
+        else
+            return true;
+    }
     
 
     

@@ -12,7 +12,6 @@ GameObject:
   - 23: {fileID: 2354392}
   - 65: {fileID: 6577324}
   - 54: {fileID: 5491258}
-  - 114: {fileID: 11472948}
   m_Layer: 0
   m_Name: arbol2
   m_TagString: Obtaculo
@@ -93,17 +92,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.3495154, y: 10.952108, z: 4.9648933}
   m_Center: {x: -0.037302017, y: 5.125741, z: -0.9393921}
---- !u!114 &11472948
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 106636}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4e8778be9bd8a240871f1d83099bf59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
