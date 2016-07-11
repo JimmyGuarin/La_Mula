@@ -16,6 +16,7 @@ public class HUD1 : MonoBehaviour
     public Text textoVelocidad;
     public GameObject panelDerrota;
     public int velocidad;
+    public RawImage bonusVictoria;
 
     public void Awake()
     {
