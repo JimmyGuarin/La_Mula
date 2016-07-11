@@ -31,7 +31,7 @@ public class Camara : MonoBehaviour {
             transform.position = Vector3.MoveTowards(transform.position,new Vector3(carrilAMover.x,transform.position.y,transform.position.z), speed);
             if (transform.position.x == carrilAMover.x)
             {
-                Debug.Log("Llego");
+
                 mover = false;
                 carrilActual = transform.position;
             }
@@ -46,7 +46,7 @@ public class Camara : MonoBehaviour {
     public void Mover(Vector3 objetivo)
     {
             carrilAMover =carrilActual+objetivo;
-            Debug.Log("carril a mover"+carrilAMover);
+
             mover = true;
 
     }
