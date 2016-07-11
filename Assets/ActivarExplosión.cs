@@ -11,20 +11,25 @@ public class ActivarExplosión : MonoBehaviour
 
     }
 
-    public void OnCollisionEnter(Collision collision)
+    public void activarExplosion()
     {
-        
-        
-        
+
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {       
            Instantiate(explosion, transform.position, transform.rotation);
 
         if (collision.gameObject.tag.Equals("Player"))
         {
-            GameObject.FindGameObjectWithTag("Player").GetComponent<MovimientoAcelerometro>().Destruida();
-        } 
-
-           Destroy(gameObject);
-                
+            MovimientoAcelerometro mBurra = GameObject.Find("Burra").GetComponent<MovimientoAcelerometro>();
+            if (!mBurra.casco.activeSelf)
+                mBurra.Destruida();
+            else
+                mBurra.QuitarCasco();
+        }
+        
+           Destroy(gameObject);             
     }
 
     // Update is called once per frame

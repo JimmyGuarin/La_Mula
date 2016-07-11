@@ -1,54 +1,52 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
-using System.Collections;
 
+
+/// <summary>
+/// Clase que representa el Movimiento de la Mula
+/// </summary>
 [RequireComponent(typeof(Rigidbody))]
 public class MovimientoAcelerometro : MonoBehaviour
 {
 
-    public float speed = 0f;
+
+    //VARIABLES PUBLICAS..............................................................................
+
+    //Variable que representa la velocidad de la mula
+    public float speed = 30f;
+    //traslacion lateral de la mula
     public float traslacion = 20.0f;
-
-    private Rigidbody rg;
-
-    public Text VELOCIDAD;
-    public Text fps;
-    public Text desplazamiento;
-
-    float deltaTime = 0.0f;
-    float fps1 = 0.0f;
-
-
-    public int carriActual;
-    public Vector2 pos;
-    public Vector2 desplazar;
-
-    private bool moviendo;
-
+    //Fuerza de salto de la mula
     public float fuerzaSalto;
+    // Si la mula está tocando el suelo
     public bool tocandoTierra = true;
-    private bool hasJumped = false;
+    //Altura que tendrá el barril
     private float altura;
-
-    Vector2 PosicionInicial;
-    [SerializeField] float SwipeMinY;
-    [SerializeField] float SwipeMinX;
-
-    Vector2 deltaposition = new Vector2(0,0);
-    float speedH = 0;
-
-
-    bool mover = false;
-
-    public float offset;
-    public Vector3 carrilAMover;
-    public Vector3 carrilActual;
-   
-
+    //Referencia al casco que tendra la Mula
+    public GameObject casco;
+    //Velocidad en el salto de la Mula
     public int velocidadY;
 
-    public GameObject casco;
+    //VARIABLES PRIVADAS..............................................................................
 
+    //Componente Rigibody de la Mula
+    private Rigidbody rg;
+    //Indice del Carril actual de la Mula
+    private int carriActual;
+    //Carril actual de la Mula
+    public Vector3 carrilActual;
+    //Posicion acumulada del desplazamiento del touch
+    private Vector2 pos;
+    //Desplazamiento del touch
+    private Vector2 desplazar;
+    // Si la mula se está moviendo
+    private bool moviendo;  
+    //Carril donde se va a mover la Mula
+    private Vector3 carrilAMover;
+    //Si se va  mover la Muula
+    private bool mover = false;
+
+
+    //Metodo llamado al inicio del script
     public void Start()
     {
         rg = GetComponent<Rigidbody>();
@@ -95,36 +93,24 @@ public class MovimientoAcelerometro : MonoBehaviour
 
         if (Input.touchCount == 1)
         {
-            
-            if (Input.GetTouch(0).phase == TouchPhase.Began)
+            Touch toque = Input.GetTouch(0);
+
+            if (toque.phase == TouchPhase.Began)
             {
                 pos = Vector2.zero;
+                mover = true;
+                return;
             }
-            pos += Input.GetTouch(0).deltaPosition;
 
-            if (Input.GetTouch(0).phase == TouchPhase.Ended)
+            if (toque.phase == TouchPhase.Moved && mover)
             {
-                if (desplazar == pos)
-                {
-                    desplazar = Vector2.zero;
-                    return;
-                }
-                else
-                {
-                    desplazar = pos;
-                }
-
-
-               
-                if (desplazar == Input.GetTouch(0).deltaPosition)
-                    return;
-
+                desplazar = Input.GetTouch(0).deltaPosition;
+                mover = false;
 
                 if ((Mathf.Abs(desplazar.x) > Mathf.Abs(desplazar.y)))
                 {
                     if (desplazar.x > 0)
                     {
-
                         if (carriActual > 1 && !mover)
                         {
                             Mover(new Vector3(-16, 0, 0));
@@ -133,25 +119,18 @@ public class MovimientoAcelerometro : MonoBehaviour
                             carriActual--;
                             return;
                         }
-
-
                     }
                     if (desplazar.x < 0)
                     {
-                        if (carriActual < 3&&!mover)
+                        if (carriActual < 3 && !mover)
                         {
-
                             Mover(new Vector3(16, 0, 0));
                             Camera.main.GetComponent<Camara>().Mover(new Vector3(10, 0, 0));
                             //transform.Translate(new Vector3(15, 0, 0));
                             carriActual++;
                             return;
-
                         }
                     }
-
-
-
                 }
                 if ((Mathf.Abs(desplazar.y) > Mathf.Abs(desplazar.x)))
                 {
@@ -164,56 +143,38 @@ public class MovimientoAcelerometro : MonoBehaviour
                 }
             }
 
-           
-
         }
-
-
-
-
-       
-
-        if (mover)
+        if (!mover)
         {
             float speedT = 100 * Time.deltaTime;
 
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(carrilAMover.x, transform.position.y, transform.position.z), speedT);
             if (transform.position.x == carrilAMover.x)
             {
+
                 
-                mover = false;
                 carrilActual = transform.position;
             }
         }
-       
-
-
-
-
     }
-
+        
     public void Mover(Vector3 objetivo)
     {
         carrilAMover = carrilActual + objetivo;
-        mover = true;
-
+    
     }
-
-
-
-
 
     void saltar()
-    {
-        
-            GetComponent<Rigidbody>().velocity = new Vector3(0, fuerzaSalto, -speed);
-            GetComponentInChildren<Animator>().speed = 0.3f;
-            velocidadY =(int) fuerzaSalto;
-            tocandoTierra = false;
-            hasJumped = true;
-        
-        
+    {        
+         GetComponent<Rigidbody>().velocity = new Vector3(0, fuerzaSalto, -speed);
+         GetComponentInChildren<Animator>().speed = 0.3f;
+         velocidadY =(int) fuerzaSalto;
+         tocandoTierra = false;     
     }
+
+
+
+
 
     public void OnTriggerEnter(Collider other)
     {
@@ -247,10 +208,9 @@ public class MovimientoAcelerometro : MonoBehaviour
             }
             else
             {
-                transform.GetChild(0).gameObject.SetActive(true);
                 Destroy(collision.gameObject, 2);
                 collision.gameObject.GetComponent<Collider>().enabled = false;
-                casco.gameObject.SetActive(false);
+                QuitarCasco();
                 return;
             }
             
@@ -269,5 +229,11 @@ public class MovimientoAcelerometro : MonoBehaviour
         transform.GetChild(0).gameObject.SetActive(true);
         HUD1.instancia.Perder();
         this.enabled = false;
+    }
+
+    public void QuitarCasco()
+    {
+        transform.GetChild(0).gameObject.SetActive(true);
+        casco.gameObject.SetActive(false);
     }
 }
