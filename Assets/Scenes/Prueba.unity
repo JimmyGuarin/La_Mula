@@ -1632,8 +1632,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 138.3, y: 1, z: 781.906}
-  m_Center: {x: 0, y: 0, z: -227.30817}
+  m_Size: {x: 138.3, y: 1, z: 279.531}
+  m_Center: {x: 0, y: 0, z: 23.879303}
 --- !u!54 &314038183
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2969,7 +2969,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 524290524}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 6.053476, y: 6.1769238, z: 21.46833}
@@ -6623,7 +6623,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22436016, guid: bd0fb6b960f9e5c4486aab735571dda8, type: 2}
       propertyPath: m_SizeDelta.y
-      value: -2.0276237
+      value: -2.1289322
       objectReference: {fileID: 0}
     - target: {fileID: 22440994, guid: bd0fb6b960f9e5c4486aab735571dda8, type: 2}
       propertyPath: m_SizeDelta.x
@@ -6631,7 +6631,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22440994, guid: bd0fb6b960f9e5c4486aab735571dda8, type: 2}
       propertyPath: m_SizeDelta.y
-      value: -3.7677436
+      value: -3.87044
       objectReference: {fileID: 0}
     - target: {fileID: 161052, guid: bd0fb6b960f9e5c4486aab735571dda8, type: 2}
       propertyPath: m_IsActive
@@ -7079,6 +7079,14 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6580060, guid: 88db6272d739e57488a8490e7d53437b, type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11446234, guid: 88db6272d739e57488a8490e7d53437b, type: 2}
+      propertyPath: casco
+      value: 
+      objectReference: {fileID: 1870591645}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 88db6272d739e57488a8490e7d53437b, type: 2}
   m_IsPrefabParent: 0
@@ -9393,6 +9401,10 @@ Transform:
   - {fileID: 781776610}
   m_Father: {fileID: 1050415809}
   m_RootOrder: 0
+--- !u!1 &1870591645 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 192516, guid: 88db6272d739e57488a8490e7d53437b, type: 2}
+  m_PrefabInternal: {fileID: 1340866721}
 --- !u!1 &1870614202
 GameObject:
   m_ObjectHideFlags: 0
