@@ -1632,8 +1632,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 138.3, y: 1, z: 279.531}
-  m_Center: {x: 0, y: 0, z: 23.879303}
+  m_Size: {x: 138.3, y: 1, z: 766.4183}
+  m_Center: {x: 0, y: 0, z: -219.5643}
 --- !u!54 &314038183
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2084,7 +2084,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 457246, guid: 829d670efb028be4fbde41c270f10dd1, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 100882, guid: 829d670efb028be4fbde41c270f10dd1, type: 2}
       propertyPath: m_IsActive
@@ -4091,7 +4091,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 435746, guid: 506ff3c68dba7ee4bb40894e8b76a14e, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 506ff3c68dba7ee4bb40894e8b76a14e, type: 2}
@@ -6575,7 +6575,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22492112, guid: bd0fb6b960f9e5c4486aab735571dda8, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 22492112, guid: bd0fb6b960f9e5c4486aab735571dda8, type: 2}
       propertyPath: m_AnchoredPosition.x
@@ -7069,7 +7069,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 490468, guid: 88db6272d739e57488a8490e7d53437b, type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 186512, guid: 88db6272d739e57488a8490e7d53437b, type: 2}
       propertyPath: m_Name
@@ -7081,12 +7081,16 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 6580060, guid: 88db6272d739e57488a8490e7d53437b, type: 2}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11446234, guid: 88db6272d739e57488a8490e7d53437b, type: 2}
       propertyPath: casco
       value: 
       objectReference: {fileID: 1870591645}
+    - target: {fileID: 5417258, guid: 88db6272d739e57488a8490e7d53437b, type: 2}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 88db6272d739e57488a8490e7d53437b, type: 2}
   m_IsPrefabParent: 0
