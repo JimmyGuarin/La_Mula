@@ -68,6 +68,81 @@ public class MovimientoAcelerometro : MonoBehaviour
 
     void Update()
     {
+       
+
+        if (Input.touchCount == 1)
+        {
+            Touch toque = Input.GetTouch(0);
+
+            if (toque.phase == TouchPhase.Began)
+            {
+                pos = Vector2.zero;
+                mover = true;
+               
+            }
+
+            if (toque.phase == TouchPhase.Moved && mover&&toque.deltaPosition.magnitude>1)
+            {
+                desplazar = Input.GetTouch(0).deltaPosition;
+                mover = false;
+                Debug.Log(desplazar);
+
+                if (Mathf.Pow(desplazar.x, 2) >=Mathf.Pow(desplazar.y, 2)&&desplazar.x!=0&& !mover)
+                {
+                    if (desplazar.x > 0.5)
+                    {
+                        if (carriActual > 1)
+                        {
+                            Mover(new Vector3(-16, 0, 0));
+                            Camera.main.GetComponent<Camara>().Mover(new Vector3(-10, 0, 0));
+                            //transform.Translate(new Vector3(-15, 0, 0));
+                            carriActual--;
+                           
+                        }
+                        return;
+                    }
+                    else
+                    {
+                        if (carriActual < 3)
+                        {
+                            Mover(new Vector3(16, 0, 0));
+                            Camera.main.GetComponent<Camara>().Mover(new Vector3(10, 0, 0));
+                            //transform.Translate(new Vector3(15, 0, 0));
+                            carriActual++;
+                           
+                        }
+                        return;
+                    }
+                }
+                else
+                {
+                    if (desplazar.y > 0.5 && !mover)
+                    {
+                        if (tocandoTierra)
+                            saltar();
+                       
+                    }
+                    return;
+                }
+            }
+
+        }
+        if (!mover)
+        {
+            float speedT = 100 * Time.deltaTime;
+
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(carrilAMover.x, transform.position.y, transform.position.z), speedT);
+            if (transform.position.x == carrilAMover.x)
+            {
+                carrilActual = transform.position;
+            }
+        }
+
+    }
+
+    public void FixedUpdate()
+    {
+
         if (tocandoTierra)
         {
 
@@ -88,80 +163,8 @@ public class MovimientoAcelerometro : MonoBehaviour
         }
 
 
-        if (Input.touchCount == 1)
-        {
-            Touch toque = Input.GetTouch(0);
-
-            if (toque.phase == TouchPhase.Began)
-            {
-                pos = Vector2.zero;
-                mover = true;
-               
-            }
-
-            if (toque.phase == TouchPhase.Moved && mover)
-            {
-                desplazar = Input.GetTouch(0).deltaPosition;
-                mover = false;
-                Debug.Log(desplazar);
-
-                if (Mathf.Pow(desplazar.x, 2) >=Mathf.Pow(desplazar.y, 2))
-                {
-                    if (desplazar.x > 0)
-                    {
-                        if (carriActual > 1 && !mover)
-                        {
-                            Mover(new Vector3(-16, 0, 0));
-                            Camera.main.GetComponent<Camara>().Mover(new Vector3(-10, 0, 0));
-                            //transform.Translate(new Vector3(-15, 0, 0));
-                            carriActual--;
-                           
-                        }
-                    }
-                    if (desplazar.x < 0)
-                    {
-                        if (carriActual < 3 && !mover)
-                        {
-                            Mover(new Vector3(16, 0, 0));
-                            Camera.main.GetComponent<Camara>().Mover(new Vector3(10, 0, 0));
-                            //transform.Translate(new Vector3(15, 0, 0));
-                            carriActual++;
-                           
-                        }
-                    }
-                }
-                if (Mathf.Pow(desplazar.y, 2) > Mathf.Pow(desplazar.x, 2))
-                {
-                    if (desplazar.y > 0)
-                    {
-                        if (tocandoTierra)
-                            saltar();
-                       
-                    }
-                }
-            }
-
-        }
-        if (!mover)
-        {
-            float speedT = 100 * Time.deltaTime;
-
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(carrilAMover.x, transform.position.y, transform.position.z), speedT);
-            if (transform.position.x == carrilAMover.x)
-            {
-                carrilActual = transform.position;
-            }
-        }
-
     }
 
-    public void FixedUpdate()
-    {
-        
-
-
-    }
-        
     public void Mover(Vector3 objetivo)
     {
         carrilAMover = carrilActual + objetivo;
