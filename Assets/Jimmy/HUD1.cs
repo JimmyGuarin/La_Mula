@@ -72,7 +72,7 @@ public class HUD1 : MonoBehaviour
     public void CambioVelocidad(int valor)
     {
 
-        Time.timeScale += 0.2f;
+        Time.timeScale += 0.1f;
         velocidad += 10;
         textoVelocidad.text = "" + velocidad + " Km/h";
     }
@@ -112,10 +112,12 @@ public class HUD1 : MonoBehaviour
         TextAtrapadas.text = "0";
         textoVelocidad.text = "30 Km/h";
         panelDerrota.SetActive(true);
+        BonusIman.SetActive(false);
+        BonusIman.GetComponentInChildren<Slider>().value = 1;
     }
     public void MostrarPanelBonus()
     {
-        BonusIman.SetActive(true);
+        BonusIman.SetActive(true); BonusIman.GetComponentInChildren<Slider>().value = 1;
         StartCoroutine("disminuirBonusIman");
 
         
@@ -127,15 +129,18 @@ public class HUD1 : MonoBehaviour
     {
        
         Slider slider = BonusIman.GetComponentInChildren<Slider>();
-        Debug.Log("entra");
         while (slider.value >0)
         {
-            Debug.Log("entra2");
+
             slider.value -= (float)(0.01* Time.timeScale);
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.1f*Time.timeScale);
         }
 
-        Mula.GetComponent<MovimientoAcelerometro>().iman.SetActive(false);
+        if (Mula != null)
+        {
+            Mula.GetComponent<MovimientoAcelerometro>().iman.SetActive(false);
+        }
+        
         BonusIman.SetActive(false);
         yield return null;
         
