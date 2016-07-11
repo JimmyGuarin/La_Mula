@@ -9,6 +9,7 @@ TagManager:
   - Obtaculo
   - Casco
   - Explosivo
+  - Iman
   layers:
   - Default
   - TransparentFX
