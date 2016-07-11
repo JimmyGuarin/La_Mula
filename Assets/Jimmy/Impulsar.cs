@@ -5,51 +5,93 @@ using System.Collections;
 public class Impulsar : MonoBehaviour
 {
 
+    public GameObject canastoIzquierdo;
+    public GameObject canastoDerecho;
+    public GameObject Iman;
+    public float mitadTiempoVuelo;
 
-    Rigidbody rg;
-
-
-
-
+    private Vector3 objetivo;
+    private Rigidbody rg;
+    private bool EnBajada;
 
     // Use this for initialization
     void Start()
     {
+        EnBajada = false;
+        rg = GetComponent<Rigidbody>();
+        Invoke("MitadTiempoVuelo",mitadTiempoVuelo);
 
-
-
+        MovimientoAcelerometro mBurra = GameObject.Find("Burra").GetComponent<MovimientoAcelerometro>();
+        canastoIzquierdo = mBurra.refCanastoIzquierdo;
+        canastoDerecho = mBurra.refCanastoDerecho;
+        Iman = mBurra.iman;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (GetComponent<Rigidbody>().isKinematic)
+        {
+            AtraccionIman();
+            return;
+        }
 
-        Invoke("Destruir", 5);
+        if (EnBajada && Iman.activeSelf && !rg.isKinematic)
+        {
+            rg.isKinematic = true;
+            return;
+        }
+       
     }
 
 
 
-    public void OnTriggerEnter(Collider other)
-    {
+    //public void OnTriggerEnter(Collider other)
+    //{
 
-        if (other.gameObject.tag.Equals("Respawn"))
+    //    if (other.gameObject.tag.Equals("Respawn"))
+    //    {
+    //        Debug.Log("Entra");
+    //        HUD1.instancia.Encholar();
+    //        Destroy(this.gameObject);
+    //    }
+    //}
+
+    //public void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.name.Equals("Suelo"))
+    //    {
+    //        HUD1.instancia.Perdida();
+    //    }
+    //}
+
+    
+
+    public void AtraccionIman()
+    {
+        float a = Vector3.Distance(transform.position, canastoIzquierdo.transform.position);
+        float b = Vector3.Distance(transform.position, canastoDerecho.transform.position);
+        if (a < b)
+            objetivo = canastoIzquierdo.transform.position;
+        else
+            objetivo = canastoDerecho.transform.position;
+
+        transform.position = Vector3.MoveTowards(transform.position, objetivo, 100 * Time.deltaTime);
+        if (transform.position == objetivo)
         {
-            Debug.Log("Entra");
             HUD1.instancia.Encholar();
+            GetComponent<Rigidbody>().isKinematic = false;
             Destroy(this.gameObject);
         }
     }
 
-    public void OnCollisionEnter(Collision collision)
+    public void MitadTiempoVuelo()
     {
-        if (collision.gameObject.name.Equals("Suelo"))
+        if (Iman.activeSelf)
         {
-            HUD1.instancia.Perdida();
+            rg.isKinematic = true;
         }
-    }
+        EnBajada = true;
 
-    public void Destruir()
-    {
-        Destroy(gameObject);
     }
 }

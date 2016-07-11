@@ -20,11 +20,15 @@ public class MovimientoAcelerometro : MonoBehaviour
     // Si la mula está tocando el suelo
     public bool tocandoTierra = true;
     //Altura que tendrá el barril
-    private float altura;
-    //Referencia al casco que tendra la Mula
-    public GameObject casco;
+    public float altura;
     //Velocidad en el salto de la Mula
     public int velocidadY;
+    //Referencia al casco que tendra la Mula
+    public GameObject casco;
+    //Referencia al Campo de fuerza Iman
+    public GameObject iman;
+    public GameObject refCanastoIzquierdo;
+    public GameObject refCanastoDerecho;
 
     //VARIABLES PRIVADAS..............................................................................
 
