@@ -1031,9 +1031,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: -2.3366315, y: 10.200001}
+  m_Offset: {x: 11.578735, y: 22.673365}
   serializedVersion: 2
-  m_Size: {x: 232.3463, y: 44.32}
+  m_Size: {x: 280.54425, y: 155.14816}
 --- !u!114 &194328032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1632,8 +1632,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 138.3, y: 1, z: 204.18442}
-  m_Center: {x: 0, y: 0, z: 66.99231}
+  m_Size: {x: 138.3, y: 1, z: 781.906}
+  m_Center: {x: 0, y: 0, z: -227.30817}
 --- !u!54 &314038183
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6619,19 +6619,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22436016, guid: bd0fb6b960f9e5c4486aab735571dda8, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: -31.061304
       objectReference: {fileID: 0}
     - target: {fileID: 22436016, guid: bd0fb6b960f9e5c4486aab735571dda8, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: -2.0276237
       objectReference: {fileID: 0}
     - target: {fileID: 22440994, guid: bd0fb6b960f9e5c4486aab735571dda8, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: -9.386273
       objectReference: {fileID: 0}
     - target: {fileID: 22440994, guid: bd0fb6b960f9e5c4486aab735571dda8, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: -3.7677436
       objectReference: {fileID: 0}
     - target: {fileID: 161052, guid: bd0fb6b960f9e5c4486aab735571dda8, type: 2}
       propertyPath: m_IsActive
