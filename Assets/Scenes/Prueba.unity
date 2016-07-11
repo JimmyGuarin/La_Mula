@@ -483,21 +483,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 120
   traslacion: 20
-  VELOCIDAD: {fileID: 0}
-  fps: {fileID: 0}
-  desplazamiento: {fileID: 0}
-  carriActual: 0
-  pos: {x: 0, y: 0}
-  desplazar: {x: 0, y: 0}
   fuerzaSalto: 35
   tocandoTierra: 1
-  SwipeMinY: 10
-  SwipeMinX: 10
-  offset: 0
-  carrilAMover: {x: 0, y: 0, z: 0}
-  carrilActual: {x: 0, y: 0, z: 0}
-  velocidadY: 0
   casco: {fileID: 1945891110}
+  velocidadY: 0
+  carrilActual: {x: 0, y: 0, z: 0}
 --- !u!54 &94914523
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6632,7 +6622,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22436016, guid: bd0fb6b960f9e5c4486aab735571dda8, type: 2}
       propertyPath: m_SizeDelta.y
-      value: -16.240152
+      value: -15.917248
       objectReference: {fileID: 0}
     - target: {fileID: 22440994, guid: bd0fb6b960f9e5c4486aab735571dda8, type: 2}
       propertyPath: m_SizeDelta.x
@@ -6640,7 +6630,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22440994, guid: bd0fb6b960f9e5c4486aab735571dda8, type: 2}
       propertyPath: m_SizeDelta.y
-      value: -18.174967
+      value: -17.84764
       objectReference: {fileID: 0}
     - target: {fileID: 161052, guid: bd0fb6b960f9e5c4486aab735571dda8, type: 2}
       propertyPath: m_IsActive
