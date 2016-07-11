@@ -105,6 +105,7 @@ public class Lanzador : MonoBehaviour {
             }
             else
             {
+                proyectil.GetComponent<Impulsar>().mitadTiempoVuelo = totalTime / 2;
                 GameObject proyectilClone = (GameObject)Instantiate(proyectil, transform.position, transform.rotation);
                 proyectilClone.GetComponent<Rigidbody>().velocity = transform.TransformDirection(velocidad);// launch the projectile! 
 
