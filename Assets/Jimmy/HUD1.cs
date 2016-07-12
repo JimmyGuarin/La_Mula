@@ -14,15 +14,19 @@ public class HUD1 : MonoBehaviour
     public Text textoPerdidasFinal;
     public Text textoPerdidas;
     public Text textoVelocidad;
+    public Text textoDistancia;
     public GameObject panelDerrota;
     public int velocidad;
     public GameObject BonusIman;
     public GameObject Mula;
+    private bool corriendo;
+    private float distancia;
 
     public void Awake()
     {
         DontDestroyOnLoad(this);
         velocidad = 30;
+        distancia = 0;
     }
 
 
@@ -36,7 +40,8 @@ public class HUD1 : MonoBehaviour
         perdidas = 0;
         encholadas = 0;
         textoVelocidad.text = "30 Km/h";
-        
+        corriendo = false;
+
         if (instancia == null)
         {
             instancia = this;
@@ -49,12 +54,27 @@ public class HUD1 : MonoBehaviour
             Time.timeScale = 1;
             Destroy(this.gameObject);
         }
-        
+
 
 
     }
 
-   
+    public void Update()
+    {
+
+
+        if (corriendo)
+        {
+            float d = (velocidad * 5) / 18;
+            d *= Time.deltaTime;
+            distancia += d;
+            textoDistancia.text = "" + ((int)distancia)+" Mts";
+
+
+        }
+
+
+    }
 
     public void Encholar()
     {
@@ -80,6 +100,7 @@ public class HUD1 : MonoBehaviour
     public void IniciarJuego()
     {
         Time.timeScale = 1f;
+        corriendo = true;
     }
 
     public void Salir()
@@ -93,10 +114,12 @@ public class HUD1 : MonoBehaviour
     public void Reiniciar()
     {
         SceneManager.LoadScene(0);
+        
     }
 
     public void Perder()
     {
+        corriendo = false;
         Invoke("MostrarPanelDerrota", 1);
 
     }
@@ -106,6 +129,8 @@ public class HUD1 : MonoBehaviour
         Time.timeScale = 0;
         perdidas = 0;
         encholadas = 0;
+        distancia = 0;
+        textoDistancia.text = "0 Mts.";
         textoPerdidasFinal.text = textoPerdidas.text;
         textoAtrapadasFinal.text = TextAtrapadas.text;
         textoPerdidas.text = "0";
@@ -120,27 +145,27 @@ public class HUD1 : MonoBehaviour
         BonusIman.SetActive(true); BonusIman.GetComponentInChildren<Slider>().value = 1;
         StartCoroutine("disminuirBonusIman");
 
-        
-       
+
+
 
     }
 
     IEnumerator disminuirBonusIman()
     {
-       
+
         Slider slider = BonusIman.GetComponentInChildren<Slider>();
-        while (slider.value >0)
+        while (slider.value > 0)
         {
 
-            slider.value -= (float)(0.01* Time.timeScale);
-            yield return new WaitForSeconds(0.1f*Time.timeScale);
+            slider.value -= (float)(0.01 * Time.timeScale);
+            yield return new WaitForSeconds(0.1f * Time.timeScale);
         }
-      
-        GameObject.Find("Burra").GetComponent<MovimientoAcelerometro>().iman.SetActive(false);          
+
+        GameObject.Find("Burra").GetComponent<MovimientoAcelerometro>().iman.SetActive(false);
         BonusIman.SetActive(false);
         yield return null;
-        
+
     }
 
-       
+
 }
