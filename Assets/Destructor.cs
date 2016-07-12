@@ -16,7 +16,7 @@ public class Destructor : MonoBehaviour
 
     }
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerEnter(Collider collision)
     {
         Destroy(collision.gameObject);
     }

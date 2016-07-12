@@ -86,7 +86,7 @@ public class GeneradorObstaculos : MonoBehaviour
             {
                 Instantiate(bonus[1], basesE[indice].transform.position + Vector3.up * 10, basesE[indice].transform.rotation);
             }
-            else
+            else if(!burra.GetComponent<MovimientoAcelerometro>().iman.activeSelf&& !burra.GetComponent<MovimientoAcelerometro>().casco.activeSelf)
             {
                 Instantiate(bonus[Random.Range(0, bonus.Length)], basesE[indice].transform.position + Vector3.up * 10, basesE[indice].transform.rotation);
             }
@@ -118,7 +118,7 @@ public class GeneradorObstaculos : MonoBehaviour
                 {
                     Instantiate(bonus[1], basesE[indice2].transform.position + Vector3.up * 10, basesE[indice2].transform.rotation);
                 }
-                else
+                else if (!burra.GetComponent<MovimientoAcelerometro>().iman.activeSelf && !burra.GetComponent<MovimientoAcelerometro>().casco.activeSelf)
                 {
                     Instantiate(bonus[Random.Range(0,bonus.Length)], basesE[indice2].transform.position + Vector3.up * 10, basesE[indice2].transform.rotation);
                 }

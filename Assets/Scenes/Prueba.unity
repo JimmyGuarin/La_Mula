@@ -1000,7 +1000,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 194328030}
   - 114: {fileID: 194328032}
-  - 61: {fileID: 194328031}
+  - 65: {fileID: 194328031}
   m_Layer: 0
   m_Name: Destructor
   m_TagString: Untagged
@@ -1014,26 +1014,24 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 194328029}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -161.6}
+  m_LocalRotation: {x: -0.23652864, y: 0.0022947192, z: 0.030541725, w: 0.9711417}
+  m_LocalPosition: {x: 0.000000023504981, y: 0, z: -161.59999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 524290528}
   m_RootOrder: 3
---- !u!61 &194328031
-BoxCollider2D:
+--- !u!65 &194328031
+BoxCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 194328029}
-  m_Enabled: 1
-  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_Offset: {x: 11.578735, y: 22.673365}
+  m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 280.54425, y: 155.14816}
+  m_Size: {x: 204.42603, y: 217.11304, z: 50.85094}
+  m_Center: {x: -0.52407837, y: 12.448856, z: -99.66638}
 --- !u!114 &194328032
 MonoBehaviour:
   m_ObjectHideFlags: 0
