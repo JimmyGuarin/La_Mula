@@ -40,15 +40,15 @@ public class MovimientoAcelerometro : MonoBehaviour
     public Vector3 carrilActual;
     //Posicion acumulada del desplazamiento del touch
     private Vector2 pos;
-    //Desplazamiento del touch
-    private Vector2 desplazar;
     // Si la mula se está moviendo
     private bool moviendo;  
     //Carril donde se va a mover la Mula
     private Vector3 carrilAMover;
     //Si se va  mover la Muula
     private bool mover = false;
-
+    private Vector3 fp;   //First touch position
+    private Vector3 lp;   //Last touch position
+    private float dragDistance;  //minimum distance for a swipe to be registered
 
     //Metodo llamado al inicio del script
     public void Start()
@@ -56,78 +56,95 @@ public class MovimientoAcelerometro : MonoBehaviour
         rg = GetComponent<Rigidbody>();
 
         pos = Vector2.zero;
-        desplazar = pos;
         carriActual = 2;
 
         velocidadY = 0;
         altura = transform.position.y;
-
+        dragDistance = Screen.width * 10 / 100;
 
     }
 
 
     void Update()
     {
-       
 
-        if (Input.touchCount == 1)
-        {
-            Touch toque = Input.GetTouch(0);
+        if(Input.touchCount>0)  //use loop to detect more than one swipe
+        { //can be ommitted if you are using lists 
+            Touch touch = Input.GetTouch(0);
 
-            if (toque.phase == TouchPhase.Began)
-            {
-                pos = Vector2.zero;
-                mover = true;
-               
+          if (touch.phase == TouchPhase.Began) //check for the first touch
+          {
+              fp = touch.position;
+              lp = touch.position;
+              transform.position = new Vector3(carrilAMover.x, transform.position.y, transform.position.z);
+              carrilActual = transform.position;
+              mover = false;
             }
 
-            if (toque.phase == TouchPhase.Moved && mover&&toque.deltaPosition.magnitude>1)
+            if (touch.phase == TouchPhase.Moved) //add the touches to list as the swipe is being made
             {
-                desplazar = Input.GetTouch(0).deltaPosition;
-                mover = false;
-                Debug.Log(desplazar);
+                //touchPositions.Add(touch.position);
+            }
 
-                if (Mathf.Pow(desplazar.x, 2) >=Mathf.Pow(desplazar.y, 2)&&desplazar.x!=0&& !mover)
-                {
-                    if (desplazar.x > 0.5)
-                    {
-                        if (carriActual > 1)
-                        {
-                            Mover(new Vector3(-16, 0, 0));
-                            Camera.main.GetComponent<Camara>().Mover(new Vector3(-10, 0, 0));
-                            //transform.Translate(new Vector3(-15, 0, 0));
-                            carriActual--;
-                           
+            if (touch.phase == TouchPhase.Ended) //check if the finger is removed from the screen
+            {
+                lp = touch.position;  //last touch position. Ommitted if you use list
+                //fp = touchPositions[0]; //get first touch position from the list of touches
+                //lp = touchPositions[touchPositions.Count - 1]; //last touch position 
+
+                //Check if drag distance is greater than 20% of the screen height
+                if (Mathf.Abs(lp.x - fp.x) > dragDistance || Mathf.Abs(lp.y - fp.y) > dragDistance)
+                {//It's a drag
+                   
+                    //check if the drag is vertical or horizontal 
+                    if (Mathf.Abs(lp.x - fp.x) > Mathf.Abs(lp.y - fp.y))
+                    {   //If the horizontal movement is greater than the vertical movement...
+                       
+                        if ((lp.x > fp.x))  //If the movement was to the right)
+                        {   //Right swipe
+                            if (carriActual > 1)
+                            {
+                                Mover(new Vector3(-16, 0, 0));
+                                Camera.main.GetComponent<Camara>().Mover(new Vector3(-10, 0, 0));
+                                carriActual--;
+                                mover = true;
+
+                            }
+                            Debug.Log("Right Swipe");
                         }
-                        return;
+                        else
+                        {   //Left swipe
+
+                            if (carriActual < 3)
+                            {
+                                carriActual++;
+                                mover = true;
+                                Mover(new Vector3(16, 0, 0));
+                                Camera.main.GetComponent<Camara>().Mover(new Vector3(10, 0, 0));
+
+                            }
+                            Debug.Log("Left Swipe");
+                        }
                     }
                     else
-                    {
-                        if (carriActual < 3)
-                        {
-                            Mover(new Vector3(16, 0, 0));
-                            Camera.main.GetComponent<Camara>().Mover(new Vector3(10, 0, 0));
-                            //transform.Translate(new Vector3(15, 0, 0));
-                            carriActual++;
-                           
+                    {   //the vertical movement is greater than the horizontal movement
+                        if (lp.y > fp.y)  //If the movement was up
+                        {   //Up swipe
+                            Debug.Log("Up Swipe");
+                            if (tocandoTierra)
+                                saltar();
                         }
-                        return;
+                        else
+                        {   //Down swipe
+                            Debug.Log("Down Swipe");
+                        }
                     }
-                }
-                else
-                {
-                    if (desplazar.y > 0.5 && !mover)
-                    {
-                        if (tocandoTierra)
-                            saltar();
-                       
-                    }
-                    return;
                 }
             }
+            
 
         }
-        if (!mover)
+        if (mover)
         {
             float speedT = 100 * Time.deltaTime;
 
@@ -135,6 +152,7 @@ public class MovimientoAcelerometro : MonoBehaviour
             if (transform.position.x == carrilAMover.x)
             {
                 carrilActual = transform.position;
+                mover = false;
             }
         }
 
@@ -197,7 +215,7 @@ public class MovimientoAcelerometro : MonoBehaviour
                 casco.SetActive(true);
                
             }
-            Destroy(other.gameObject);
+            Destroy(other.transform.parent.gameObject);
         }
         if(other.gameObject.tag.Equals("Iman"))
         {

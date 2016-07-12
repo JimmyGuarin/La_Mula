@@ -141,7 +141,7 @@ public class GeneradorObstaculos : MonoBehaviour
     bool hayBonus()
     {
         GameObject casco = GameObject.Find("casco(Clone)");
-        GameObject iman = GameObject.Find("magnet(Clone)");
+        GameObject iman = GameObject.Find("Iman(Clone)");
 
         if (!casco && !iman)
             return false;

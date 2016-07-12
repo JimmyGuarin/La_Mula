@@ -69,9 +69,9 @@ public class HUD1 : MonoBehaviour
         textoPerdidas.text = "" + perdidas;
     }
 
-    public void CambioVelocidad(int valor)
+    public void CambioVelocidad()
     {
-
+        Debug.Log("entra");
         Time.timeScale += 0.1f;
         velocidad += 10;
         textoVelocidad.text = "" + velocidad + " Km/h";
@@ -135,12 +135,8 @@ public class HUD1 : MonoBehaviour
             slider.value -= (float)(0.01* Time.timeScale);
             yield return new WaitForSeconds(0.1f*Time.timeScale);
         }
-
-        if (Mula != null)
-        {
-            Mula.GetComponent<MovimientoAcelerometro>().iman.SetActive(false);
-        }
-        
+      
+        GameObject.Find("Burra").GetComponent<MovimientoAcelerometro>().iman.SetActive(false);          
         BonusIman.SetActive(false);
         yield return null;
         
