@@ -32,7 +32,6 @@ public class Lanzador : MonoBehaviour {
        // transform.position = new Vector3(transform.position.x, bases[3].position.y, transform.position.z);
         InvokeRepeating("disparar", 1, 2);
         lanzados = 0;
-        Random gen = new Random();
         dinamita = Random.value > 0.5f;
         
 
@@ -57,7 +56,6 @@ public class Lanzador : MonoBehaviour {
 
         int indice = Random.Range(0, bases.Length);
         //int indice = 1;
-        Vector3 baseT = bases[indice].position;
      
         float g = Physics.gravity.magnitude;
         float vertSpeed = Mathf.Sqrt(2 * g * altura);
@@ -113,10 +111,10 @@ public class Lanzador : MonoBehaviour {
         }
 
         lanzados++;
-        if (lanzados % 5 == 0 && burra.velocity.magnitude<200)
+        if (lanzados % 10 == 0 && burra.velocity.magnitude<200)
         {
 
-            StartCoroutine(cambiarVelocidad(totalTime));
+            StartCoroutine(cambiarVelocidad(totalTime+1));
             
         }
 
@@ -129,7 +127,7 @@ public class Lanzador : MonoBehaviour {
         yield return new WaitForSeconds(time+Time.deltaTime);
         //burra.GetComponent<MovimientoAcelerometro>().speed += 10;
         //altura +=1;
-        HUD1.instancia.CambioVelocidad((int)burra.GetComponent<MovimientoAcelerometro>().speed);
+        HUD1.instancia.CambioVelocidad();
         InvokeRepeating("disparar",1, 3);
     }
 
