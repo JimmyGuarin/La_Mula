@@ -38,8 +38,6 @@ public class MovimientoAcelerometro : MonoBehaviour
     private int carriActual;
     //Carril actual de la Mula
     public Vector3 carrilActual;
-    //Posicion acumulada del desplazamiento del touch
-    private Vector2 pos;
     // Si la mula se está moviendo
     private bool moviendo;  
     //Carril donde se va a mover la Mula
@@ -54,8 +52,6 @@ public class MovimientoAcelerometro : MonoBehaviour
     public void Start()
     {
         rg = GetComponent<Rigidbody>();
-
-        pos = Vector2.zero;
         carriActual = 2;
 
         velocidadY = 0;
@@ -110,7 +106,7 @@ public class MovimientoAcelerometro : MonoBehaviour
                                 mover = true;
 
                             }
-                            Debug.Log("Right Swipe");
+                           
                         }
                         else
                         {   //Left swipe
@@ -123,7 +119,7 @@ public class MovimientoAcelerometro : MonoBehaviour
                                 Camera.main.GetComponent<Camara>().Mover(new Vector3(10, 0, 0));
 
                             }
-                            Debug.Log("Left Swipe");
+                           
                         }
                     }
                     else
@@ -136,7 +132,7 @@ public class MovimientoAcelerometro : MonoBehaviour
                         }
                         else
                         {   //Down swipe
-                            Debug.Log("Down Swipe");
+                           
                         }
                     }
                 }
