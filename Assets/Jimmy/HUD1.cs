@@ -113,6 +113,7 @@ public class HUD1 : MonoBehaviour
 
     public void Reiniciar()
     {
+        corriendo = true;
         SceneManager.LoadScene(0);
         
     }
