@@ -6,8 +6,8 @@ using System.Collections;
 public class HUD1 : MonoBehaviour
 {
 
-    public int encholadas;
-    public int perdidas;
+    
+    
     public static HUD1 instancia;
     public Text TextAtrapadas;
     public Text textoAtrapadasFinal;
@@ -20,7 +20,26 @@ public class HUD1 : MonoBehaviour
     public GameObject BonusIman;
     public GameObject Mula;
     private bool corriendo;
-    private float distancia;
+
+
+
+    //Propiedades para verificar objetivos
+    [HideInInspector]
+    public int dinamitasEsquivadas;
+    [HideInInspector]
+    public int cascosAtrapados;
+    [HideInInspector]
+    public int imanesAtrapados;
+    [HideInInspector]
+    public int BarrilesDorados;
+    [HideInInspector]
+    public float distancia;
+    [HideInInspector]
+    public int encholadas;
+    [HideInInspector]
+    public int perdidas;
+
+    public GameObject panelObjetivos;
 
     public void Awake()
     {
@@ -37,8 +56,7 @@ public class HUD1 : MonoBehaviour
     void Start()
     {
 
-        perdidas = 0;
-        encholadas = 0;
+        Restablecer();
         textoVelocidad.text = "30 Km/h";
         corriendo = false;
 
@@ -46,6 +64,8 @@ public class HUD1 : MonoBehaviour
         {
             instancia = this;
             Time.timeScale = 0;
+            gameObject.AddComponent<Nivel1>();
+            IniciarJuego();
 
         }
 
@@ -105,16 +125,32 @@ public class HUD1 : MonoBehaviour
 
     public void Salir()
     {
-        Application.Quit();
+        Serializable.Save();
+        Time.timeScale = 1;
+        Destroy(this.gameObject);
+        SceneManager.LoadScene(0);
 
     }
 
+
+    public void Restablecer()
+    {
+        perdidas = 0;
+        encholadas = 0;
+        distancia = 0;
+        dinamitasEsquivadas = 0;
+        imanesAtrapados = 0;
+        cascosAtrapados = 0;
+        textoPerdidas.text = "0";
+        TextAtrapadas.text = "0";
+        textoVelocidad.text = "30 Km/h";
+    }
 
 
     public void Reiniciar()
     {
         corriendo = true;
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
         
     }
 
@@ -128,15 +164,10 @@ public class HUD1 : MonoBehaviour
     public void MostrarPanelDerrota()
     {
         Time.timeScale = 0;
-        perdidas = 0;
-        encholadas = 0;
-        distancia = 0;
         textoDistancia.text = "0 Mts.";
         textoPerdidasFinal.text = textoPerdidas.text;
         textoAtrapadasFinal.text = TextAtrapadas.text;
-        textoPerdidas.text = "0";
-        TextAtrapadas.text = "0";
-        textoVelocidad.text = "30 Km/h";
+        Restablecer();
         panelDerrota.SetActive(true);
         BonusIman.SetActive(false);
         BonusIman.GetComponentInChildren<Slider>().value = 1;
@@ -145,10 +176,6 @@ public class HUD1 : MonoBehaviour
     {
         BonusIman.SetActive(true); BonusIman.GetComponentInChildren<Slider>().value = 1;
         StartCoroutine("disminuirBonusIman");
-
-
-
-
     }
 
     IEnumerator disminuirBonusIman()
@@ -167,6 +194,17 @@ public class HUD1 : MonoBehaviour
         yield return null;
 
     }
+
+
+    public void MostrarObjetivo(string nombre,string descripcion, int indice)
+    {
+        panelObjetivos.transform.GetChild(0).GetComponent<Text>().text = nombre;
+        panelObjetivos.transform.GetChild(1).GetComponent<Text>().text = descripcion;
+        panelObjetivos.GetComponent<Animation>().Play();
+
+
+    }
+
 
 
 }
