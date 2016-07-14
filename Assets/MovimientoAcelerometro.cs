@@ -126,7 +126,7 @@ public class MovimientoAcelerometro : MonoBehaviour
                     {   //the vertical movement is greater than the horizontal movement
                         if (lp.y > fp.y)  //If the movement was up
                         {   //Up swipe
-                            Debug.Log("Up Swipe");
+
                             if (tocandoTierra)
                                 saltar();
                         }
@@ -208,9 +208,11 @@ public class MovimientoAcelerometro : MonoBehaviour
         {
             if (!casco.activeSelf)
             {
+                
                 casco.SetActive(true);
                
             }
+            HUD1.instancia.cascosAtrapados++;
             Destroy(other.transform.parent.gameObject);
         }
         if(other.gameObject.tag.Equals("Iman"))
@@ -220,6 +222,7 @@ public class MovimientoAcelerometro : MonoBehaviour
                 iman.SetActive(true);
                 HUD1.instancia.MostrarPanelBonus();
             }
+            HUD1.instancia.imanesAtrapados++;
             Destroy(other.gameObject);
         }
     }

@@ -28,6 +28,10 @@ public class ActivarExplosión : MonoBehaviour
             else
                 mBurra.QuitarCasco();
         }
+        else
+        {
+            HUD1.instancia.dinamitasEsquivadas++;
+        }
         
            Destroy(gameObject);             
     }

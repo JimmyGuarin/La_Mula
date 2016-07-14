@@ -80,7 +80,7 @@ public class Impulsar : MonoBehaviour
         {
             HUD1.instancia.Encholar();
             GetComponent<Rigidbody>().isKinematic = false;
-            Debug.Log("Entra");
+
             Destroy(this.gameObject);
 
         }
