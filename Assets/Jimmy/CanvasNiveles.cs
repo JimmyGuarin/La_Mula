@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class CanvasNiveles : MonoBehaviour {
@@ -6,11 +7,14 @@ public class CanvasNiveles : MonoBehaviour {
 
     public float BeginDragY;
     public Animator PanelObjetivos;
+    public int nivel;
 
 	// Use this for initialization
 	void Start () {
-	
-        
+
+        nivel = 0;
+        Serializable.Load();
+        Debug.Log(Serializable.nivel1Serializable.objetivo1);
 	}
 	
 	// Update is called once per frame
@@ -29,7 +33,7 @@ public class CanvasNiveles : MonoBehaviour {
 
     public void Evento()
     {
-        Debug.Log(Input.mousePosition);
+
         BeginDragY = Input.mousePosition.y;
     }
 
@@ -38,7 +42,6 @@ public class CanvasNiveles : MonoBehaviour {
 
         if (Input.mousePosition.y <= BeginDragY)
         {
-            Debug.Log(Input.mousePosition);
             PanelObjetivos.SetBool("ocultar", true);
             PanelObjetivos = null;
         }  
@@ -50,5 +53,11 @@ public class CanvasNiveles : MonoBehaviour {
         {
             PanelObjetivos.SetBool("ocultar", true);
         }
+    }
+
+    public void ComenzarNivel(int nivel)
+    {
+        PanelObjetivos.SetBool("ocultar", true);
+        SceneManager.LoadSceneAsync(1);
     }
 }
