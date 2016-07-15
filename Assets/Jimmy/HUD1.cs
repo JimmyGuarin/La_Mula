@@ -23,6 +23,7 @@ public class HUD1 : MonoBehaviour
 
     private Nivel nivelActual;
 
+
     //Propiedades para verificar objetivos
     [HideInInspector]
     public int dinamitasEsquivadas;
@@ -62,12 +63,9 @@ public class HUD1 : MonoBehaviour
         Restablecer();
         textoVelocidad.text = "30 Km/h";
         corriendo = false;
+
         nivelActual = (Nivel)Serializable.niveles.niveles[0];
-        Debug.Log(nivelActual + " Nivel"+ nivelActual.objetivos[0].estado);
-        Debug.Log(nivelActual + " Nivel" + nivelActual.objetivos[1].estado);
-        Debug.Log(nivelActual + " Nivel" + nivelActual.objetivos[2].estado);
-        Debug.Log(nivelActual + " Nivel" + nivelActual.objetivos[3].estado);
-        Debug.Log(nivelActual + " Nivel" + nivelActual.objetivos[4].estado);
+
 
         if (instancia == null)
         {
@@ -97,12 +95,18 @@ public class HUD1 : MonoBehaviour
             d *= Time.deltaTime;
             distancia += d;
             textoDistancia.text = "" + ((int)distancia)+" Mts";
+            Serializable.niveles.logros.metrosRecorridos += d;
         }
 
         Objetivo obj = nivelActual.VerificarObjetivos();
         if (obj!= null)
         {
-            MostrarObjetivo(obj);
+            MostrarObjetivo(obj,0);
+        }
+        obj = Serializable.niveles.logros.VerificarLogros();
+        if (obj != null)
+        {
+            MostrarObjetivo(obj,1);
         }
 
 
@@ -209,10 +213,22 @@ public class HUD1 : MonoBehaviour
     }
 
 
-    public void MostrarObjetivo(Objetivo obj)
+    public void MostrarObjetivo(Objetivo obj, int tipo)
     {
-       
-        
+        //Objetivo
+        if (tipo == 0)
+        {
+            panelObjetivos.transform.GetChild(2).gameObject.SetActive(true);
+            panelObjetivos.transform.GetChild(3).gameObject.SetActive(false);
+        }
+
+        //Logro
+        if (tipo == 1)
+        {
+            panelObjetivos.transform.GetChild(2).gameObject.SetActive(true);
+            panelObjetivos.transform.GetChild(3).gameObject.SetActive(false);
+        }
+
         panelObjetivos.transform.GetChild(0).GetComponent<Text>().text = obj.nombre;
         panelObjetivos.transform.GetChild(1).GetComponent<Text>().text = obj.descripcion;
         panelObjetivos.GetComponent<Animation>().Play();
