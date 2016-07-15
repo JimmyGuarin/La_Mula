@@ -21,7 +21,7 @@ public class HUD1 : MonoBehaviour
     public GameObject Mula;
     private bool corriendo;
 
-
+    private Nivel nivelActual;
 
     //Propiedades para verificar objetivos
     [HideInInspector]
@@ -46,6 +46,7 @@ public class HUD1 : MonoBehaviour
         DontDestroyOnLoad(this);
         velocidad = 30;
         distancia = 0;
+        nivelActual =(Nivel) Serializable.niveles.niveles[Serializable.nivelActual - 1];
     }
 
 
@@ -64,7 +65,6 @@ public class HUD1 : MonoBehaviour
         {
             instancia = this;
             Time.timeScale = 0;
-            gameObject.AddComponent<Nivel1>();
             IniciarJuego();
 
         }
@@ -89,8 +89,12 @@ public class HUD1 : MonoBehaviour
             d *= Time.deltaTime;
             distancia += d;
             textoDistancia.text = "" + ((int)distancia)+" Mts";
+        }
 
-
+        Objetivo obj = nivelActual.VerificarObjetivos();
+        if (obj!= null)
+        {
+            MostrarObjetivo(obj);
         }
 
 
@@ -125,6 +129,12 @@ public class HUD1 : MonoBehaviour
 
     public void Salir()
     {
+
+        Serializable.Load();
+        Debug.Log(Serializable.niveles);
+        Debug.Log("Entra");
+        Nivel n = (Nivel)Serializable.niveles.niveles[0];
+        n.VerificarObjetivos();        
         Serializable.Save();
         Time.timeScale = 1;
         Destroy(this.gameObject);
@@ -196,13 +206,11 @@ public class HUD1 : MonoBehaviour
     }
 
 
-    public void MostrarObjetivo(string nombre,string descripcion, int indice)
+    public void MostrarObjetivo(Objetivo obj)
     {
-        panelObjetivos.transform.GetChild(0).GetComponent<Text>().text = nombre;
-        panelObjetivos.transform.GetChild(1).GetComponent<Text>().text = descripcion;
+        panelObjetivos.transform.GetChild(0).GetComponent<Text>().text = obj.nombre;
+        panelObjetivos.transform.GetChild(1).GetComponent<Text>().text = obj.descripcion;
         panelObjetivos.GetComponent<Animation>().Play();
-
-
     }
 
 

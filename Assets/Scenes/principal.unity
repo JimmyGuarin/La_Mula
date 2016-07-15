@@ -2455,7 +2455,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Esquiva 20 Dinamitas en una sola carrera
+  m_Text: Esquiva 10 Dinamitas en una sola carrera
 --- !u!222 &118620533
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11823,6 +11823,12 @@ MonoBehaviour:
   BeginDragY: 0
   PanelObjetivos: {fileID: 0}
   nivel: 0
+  objetivosNivel1:
+  - {fileID: 1462306588}
+  - {fileID: 1547606641}
+  - {fileID: 1606479708}
+  - {fileID: 602756599}
+  - {fileID: 1982474916}
 --- !u!114 &583941024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22522,7 +22528,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: ' Atrapa 10  imanes en una sola carrera.'
+  m_Text: ' Atrapa 5  imanes en una sola carrera.'
 --- !u!222 &1127111000
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -30083,7 +30089,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.14705884, g: 0.14705884, b: 0.14705884, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -30394,7 +30400,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Atrapa los primeros 10 barriles sin perder alguno.
+  m_Text: Atrapa los primeros 5 barriles sin perder alguno.
 --- !u!222 &1464750430
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -41066,7 +41072,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Atrapa 10 Cascos en una sola carrera
+  m_Text: Atrapa 5 Cascos en una sola carrera
 --- !u!222 &2001094631
 CanvasRenderer:
   m_ObjectHideFlags: 0
