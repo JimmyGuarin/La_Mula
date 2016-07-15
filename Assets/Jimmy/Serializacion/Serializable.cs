@@ -7,14 +7,15 @@ using System.IO;
 
 public static class Serializable {
 
-    public static Nivel1 nivel1Serializable;
+    public static ManejadorNiveles niveles;
+    public static int nivelActual;
 
     public static void Save()
     {
-        nivel1Serializable = Nivel1.instancia;
+        niveles = ManejadorNiveles.instancia;
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/savedGames.gd");
-        bf.Serialize(file, Serializable.nivel1Serializable);
+        bf.Serialize(file, Serializable.niveles);
         file.Close();
     }
 
@@ -24,7 +25,7 @@ public static class Serializable {
         {
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/savedGames.gd", FileMode.Open);
-            Serializable.nivel1Serializable = (Nivel1)bf.Deserialize(file);
+            Serializable.niveles = (ManejadorNiveles)bf.Deserialize(file);
             file.Close();
         }
     }
