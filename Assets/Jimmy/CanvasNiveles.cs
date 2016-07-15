@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
@@ -9,12 +10,23 @@ public class CanvasNiveles : MonoBehaviour {
     public Animator PanelObjetivos;
     public int nivel;
 
+    public GameObject[] objetivosNivel1;
+
 	// Use this for initialization
 	void Start () {
 
-        nivel = 0;
+        Debug.Log(Application.persistentDataPath);
         Serializable.Load();
-        Debug.Log(Serializable.nivel1Serializable.objetivo1);
+        if (Serializable.niveles == null)
+        {
+            Serializable.niveles = new ManejadorNiveles();
+        }
+        else
+        {
+            VerificarObjetivosCompletados();
+        }
+
+
 	}
 	
 	// Update is called once per frame
@@ -57,7 +69,30 @@ public class CanvasNiveles : MonoBehaviour {
 
     public void ComenzarNivel(int nivel)
     {
+
+
         PanelObjetivos.SetBool("ocultar", true);
         SceneManager.LoadSceneAsync(1);
     }
+
+
+    public void VerificarObjetivosCompletados()
+    {
+
+        foreach(Nivel n in Serializable.niveles.niveles)
+        {
+            for(int i = 0; i < n.objetivos.Length; i++)
+            {
+
+                if (n.objetivos[i].estado)
+                    objetivosNivel1[i].GetComponent<Image>().color = Color.white;
+
+            }
+
+        }
+
+
+
+    }
+
 }
