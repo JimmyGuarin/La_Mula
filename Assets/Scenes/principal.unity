@@ -2759,8 +2759,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 151.25, y: -34.5}
-  m_SizeDelta: {x: 282, y: 69}
+  m_AnchoredPosition: {x: 294, y: -34.5}
+  m_SizeDelta: {x: 567, y: 69}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &162241354
 MonoBehaviour:
@@ -2794,7 +2794,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.21
-  m_Text: Reliquia 6
+  m_Text: "La arquitectura t\xEDpica"
 --- !u!222 &162241355
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3167,7 +3167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.37254903, g: 0.32941177, b: 0.32941177, a: 0.38039216}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4313,7 +4313,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Descripci\xF3n de la reliquia"
+  m_Text: Ave tipica de la zona
 --- !u!222 &246258156
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5329,7 +5329,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Descripci\xF3n de la reliquia"
+  m_Text: "Foto de recuerdos t\xEDpicos"
 --- !u!222 &329491940
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5739,8 +5739,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 151.25, y: -34.5}
-  m_SizeDelta: {x: 282, y: 69}
+  m_AnchoredPosition: {x: 267, y: -34.5}
+  m_SizeDelta: {x: 514, y: 69}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &338666678
 MonoBehaviour:
@@ -5774,9 +5774,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.21
-  m_Text: 'Reliquia 5
-
-'
+  m_Text: La esfera del clima
 --- !u!222 &338666679
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6268,7 +6266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.37254903, g: 0.32941177, b: 0.32941177, a: 0.38039216}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -9702,8 +9700,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 151.25, y: -34.5}
-  m_SizeDelta: {x: 282, y: 69}
+  m_AnchoredPosition: {x: 271, y: -34.5}
+  m_SizeDelta: {x: 522, y: 69}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &474536420
 MonoBehaviour:
@@ -9737,7 +9735,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.21
-  m_Text: Reliquia 4
+  m_Text: "El talisman ind\xEDgena "
 --- !u!222 &474536421
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13894,7 +13892,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Descripci\xF3n de la reliquia"
+  m_Text: Recuerdo de bolivar
 --- !u!222 &694613338
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -14156,7 +14154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.37254903, g: 0.32941177, b: 0.32941177, a: 0.38039216}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -15017,8 +15015,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -126, y: 28}
-  m_SizeDelta: {x: 378, y: 44}
+  m_AnchoredPosition: {x: 1.4999771, y: 25.000076}
+  m_SizeDelta: {x: 633, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &740287934
 MonoBehaviour:
@@ -15052,7 +15050,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Descripci\xF3n del logro"
+  m_Text: Recorre 5000 metros
 --- !u!222 &740287935
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16611,7 +16609,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.37254903, g: 0.32941177, b: 0.32941177, a: 0.38039216}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -18450,8 +18448,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 151.25, y: -34.5}
-  m_SizeDelta: {x: 282, y: 69}
+  m_AnchoredPosition: {x: 250, y: -34.5}
+  m_SizeDelta: {x: 479, y: 69}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &907597374
 MonoBehaviour:
@@ -18485,7 +18483,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.21
-  m_Text: Logro 2
+  m_Text: Contra el mundo
 --- !u!222 &907597375
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -19648,7 +19646,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.37254903, g: 0.32941177, b: 0.32941177, a: 0.38039216}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -20922,8 +20920,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 151.25, y: -34.5}
-  m_SizeDelta: {x: 282, y: 69}
+  m_AnchoredPosition: {x: 221, y: -34.5}
+  m_SizeDelta: {x: 422, y: 69}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1047852284
 MonoBehaviour:
@@ -20957,7 +20955,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.21
-  m_Text: Reliquia 3
+  m_Text: Palma de cera
 --- !u!222 &1047852285
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -21786,7 +21784,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.37254903, g: 0.32941177, b: 0.32941177, a: 0.38039216}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -22738,7 +22736,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Descripci\xF3n de la reliquia"
+  m_Text: La palma de los valles
 --- !u!222 &1134743659
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24292,8 +24290,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 151.25, y: -34.5}
-  m_SizeDelta: {x: 282, y: 69}
+  m_AnchoredPosition: {x: 300, y: -34.5}
+  m_SizeDelta: {x: 580, y: 69}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1193762123
 MonoBehaviour:
@@ -24327,7 +24325,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.21
-  m_Text: Logro 1
+  m_Text: Mula Trotamundos
 --- !u!222 &1193762124
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -26720,7 +26718,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.37254903, g: 0.32941177, b: 0.32941177, a: 0.38039216}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -29111,7 +29109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.37254903, g: 0.32941177, b: 0.32941177, a: 0.38039216}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -30400,7 +30398,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Atrapa los primeros 5 barriles sin perder alguno.
+  m_Text: Captura los 5 primeros barriles
 --- !u!222 &1464750430
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -31758,7 +31756,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Descripci\xF3n de la reliquia"
+  m_Text: "El mejor clima del pa\xEDs"
 --- !u!222 &1503632881
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -32758,7 +32756,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.37254903, g: 0.32941177, b: 0.32941177, a: 0.38039216}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -33473,7 +33471,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.37254903, g: 0.32941177, b: 0.32941177, a: 0.38039216}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -34102,8 +34100,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 151.25, y: -34.5}
-  m_SizeDelta: {x: 282, y: 69}
+  m_AnchoredPosition: {x: 285, y: -34.5}
+  m_SizeDelta: {x: 549, y: 69}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1614100056
 MonoBehaviour:
@@ -34137,7 +34135,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.21
-  m_Text: Reliquia 2
+  m_Text: "La estatua de bol\xEDvar"
 --- !u!222 &1614100057
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -35039,7 +35037,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.37254903, g: 0.32941177, b: 0.32941177, a: 0.38039216}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -35940,8 +35938,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -126, y: 28}
-  m_SizeDelta: {x: 378, y: 44}
+  m_AnchoredPosition: {x: -31, y: 28}
+  m_SizeDelta: {x: 568, y: 44}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1748218454
 MonoBehaviour:
@@ -35975,7 +35973,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Descripci\xF3n del logro"
+  m_Text: "Derriba 10 obst\xE1culos con casco."
 --- !u!222 &1748218455
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -36753,7 +36751,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.37254903, g: 0.32941177, b: 0.32941177, a: 0.38039216}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -38824,7 +38822,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Descripci\xF3n de la reliquia"
+  m_Text: "Del cementerio ind\xEDgena"
 --- !u!222 &1897494165
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -39490,8 +39488,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 151.25, y: -34.5}
-  m_SizeDelta: {x: 282, y: 69}
+  m_AnchoredPosition: {x: 281, y: -34.5}
+  m_SizeDelta: {x: 542, y: 69}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1925529376
 MonoBehaviour:
@@ -39525,7 +39523,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.21
-  m_Text: Reliquia 1
+  m_Text: El barranquero
 --- !u!222 &1925529377
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -40359,7 +40357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.375, g: 0.33088234, b: 0.33088234, a: 0.384}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -40948,7 +40946,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1999797369
 RectTransform:
   m_ObjectHideFlags: 0
@@ -41284,7 +41282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.37254903, g: 0.32941177, b: 0.32941177, a: 0.38039216}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -43093,7 +43091,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.37254903, g: 0.32941177, b: 0.32941177, a: 0.38039216}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -43633,7 +43631,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.37254903, g: 0.32941177, b: 0.32941177, a: 0.38039216}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
