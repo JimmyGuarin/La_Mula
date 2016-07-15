@@ -11,6 +11,7 @@ public class Lanzador : MonoBehaviour {
 
     public Rigidbody burra;
     public GameObject proyectil;
+    public GameObject barrilDorado;
     public GameObject bomba;
     public GameObject puntoCaida;
 
@@ -77,7 +78,7 @@ public class Lanzador : MonoBehaviour {
             }
         }
 
-
+        bool bonusDorado = Random.value > 0.3f;
 
 
         transform.LookAt(Adelante);
@@ -88,6 +89,7 @@ public class Lanzador : MonoBehaviour {
 
         
         Vector3 velocidad = new Vector3(0, vertSpeed, horSpeed);
+        Debug.Log(bonusDorado);
         dinamita = Random.value > 0.6f;
         if(colisiona==false)
         {
@@ -101,7 +103,13 @@ public class Lanzador : MonoBehaviour {
                 // launch the projectile! 
 
             }
+            else if(bonusDorado)
+            {
+                GameObject barrilDoradot = (GameObject)Instantiate(barrilDorado, transform.position, transform.rotation);
+                barrilDoradot.GetComponent<Rigidbody>().velocity = transform.TransformDirection(velocidad);
+            }
             else
+
             {
                 proyectil.GetComponent<Impulsar>().mitadTiempoVuelo = totalTime / 2;
                 GameObject proyectilClone = (GameObject)Instantiate(proyectil, transform.position, transform.rotation);
@@ -119,6 +127,8 @@ public class Lanzador : MonoBehaviour {
         }
 
     }
+
+    
 
 
     IEnumerator cambiarVelocidad(float time)
