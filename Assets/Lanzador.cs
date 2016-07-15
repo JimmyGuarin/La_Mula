@@ -78,7 +78,7 @@ public class Lanzador : MonoBehaviour {
             }
         }
 
-        bool bonusDorado = Random.value > 0.3f;
+        bool bonusDorado = Random.value > 0.05f;
 
 
         transform.LookAt(Adelante);

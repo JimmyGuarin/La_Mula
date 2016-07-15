@@ -1804,7 +1804,7 @@ MonoBehaviour:
   - {fileID: 1129030911}
   - {fileID: 354887051}
   burra: {fileID: 1759783168}
-  proyectil: {fileID: 130228, guid: 4fa75ec4a2c3ef742bb3df027fc319cd, type: 2}
+  proyectil: {fileID: 190824, guid: f4e24af4aa05dda40959d02f3b641d26, type: 2}
   barrilDorado: {fileID: 142294, guid: 470792088a2272b4abed27e2e3deb9ef, type: 2}
   bomba: {fileID: 114834, guid: 5c7c1b80d02524f4d996aceda47eb8b4, type: 2}
   puntoCaida: {fileID: 195994, guid: 71ec356d990f03e4d98b51242000847d, type: 2}
