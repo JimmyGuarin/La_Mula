@@ -48,6 +48,9 @@ public class MovimientoAcelerometro : MonoBehaviour
     private Vector3 lp;   //Last touch position
     private float dragDistance;  //minimum distance for a swipe to be registered
 
+
+    bool puedePerder;
+
     //Metodo llamado al inicio del script
     public void Start()
     {
@@ -57,6 +60,7 @@ public class MovimientoAcelerometro : MonoBehaviour
         velocidadY = 0;
         altura = transform.position.y;
         dragDistance = Screen.width * 10 / 100;
+        puedePerder = true;
 
     }
 
@@ -210,7 +214,7 @@ public class MovimientoAcelerometro : MonoBehaviour
             {
                 
                 casco.SetActive(true);
-               
+                puedePerder = false;
             }
             HUD1.instancia.cascosAtrapados++;
             Destroy(other.transform.parent.gameObject);
@@ -235,15 +239,25 @@ public class MovimientoAcelerometro : MonoBehaviour
             
             
             transform.GetChild(0).gameObject.SetActive(false);
-            if (!casco.activeSelf)
+            if (!casco.activeSelf && puedePerder)
             {
+                Debug.Log("SinCasco");
+                Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
+                rb.isKinematic = true;
                 Destruida();
             }
             else
             {
+
+                Debug.Log("destruyendoCasco");
+                Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
+                //rb.isKinematic = true;
+                rb.AddForce(new Vector3(0, 2000, 0));
+
+                //collision.gameObject.GetComponent<BoxCollider>().enabled = false;
                 Destroy(collision.gameObject, 2);
-                collision.gameObject.GetComponent<Collider>().enabled = false;
                 QuitarCasco();
+                Invoke("cambiarEstado", 1f);
                 return;
             }
             
@@ -252,6 +266,11 @@ public class MovimientoAcelerometro : MonoBehaviour
         {
             tocandoTierra = true;
         }
+    }
+    
+    void cambiarEstado()
+    {
+        puedePerder = true;
     }
 
     public void Destruida()
