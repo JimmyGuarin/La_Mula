@@ -24,6 +24,7 @@ public class CanvasNiveles : MonoBehaviour {
         else
         {
             VerificarObjetivosCompletados();
+            Debug.Log(Serializable.niveles.logros.metrosRecorridos);
         }
 
 

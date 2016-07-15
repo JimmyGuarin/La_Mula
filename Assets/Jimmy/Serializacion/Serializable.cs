@@ -13,10 +13,6 @@ public static class Serializable {
     {
         
         BinaryFormatter bf = new BinaryFormatter();
-        if (File.Exists(Application.persistentDataPath + "/savedGames.gd"))
-        {
-            File.Delete(Application.persistentDataPath + "/savedGames.gd");
-        }
         FileStream file = File.Create(Application.persistentDataPath + "/savedGames.gd");
         bf.Serialize(file, Serializable.niveles);
         file.Close();
