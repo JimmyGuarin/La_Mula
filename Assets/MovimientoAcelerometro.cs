@@ -259,7 +259,7 @@ public class MovimientoAcelerometro : MonoBehaviour
                 //collision.gameObject.GetComponent<BoxCollider>().enabled = false;
                 Destroy(collision.gameObject, 2);
                 QuitarCasco();
-                Invoke("cambiarEstado", 1f);
+                Invoke("cambiarEstado", 0.5f);
                 return;
             }
             
