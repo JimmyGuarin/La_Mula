@@ -51,6 +51,7 @@ public class Impulsar : MonoBehaviour
 
         if (other.gameObject.tag.Equals("Respawn"))
         {
+  
             HUD1.instancia.Encholar();
             Destroy(this.gameObject);
         }

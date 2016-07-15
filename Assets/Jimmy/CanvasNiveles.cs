@@ -23,7 +23,6 @@ public class CanvasNiveles : MonoBehaviour {
         }
         else
         {
-            Nivel n = (Nivel)Serializable.niveles.niveles[0];
             VerificarObjetivosCompletados();
         }
 
@@ -71,7 +70,7 @@ public class CanvasNiveles : MonoBehaviour {
     public void ComenzarNivel(int nivel)
     {
 
-        Serializable.nivelActual = nivel;
+
         PanelObjetivos.SetBool("ocultar", true);
         SceneManager.LoadSceneAsync(1);
     }

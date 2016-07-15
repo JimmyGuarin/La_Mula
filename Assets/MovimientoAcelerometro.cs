@@ -212,7 +212,7 @@ public class MovimientoAcelerometro : MonoBehaviour
         {
             if (!casco.activeSelf)
             {
-                
+                Handheld.Vibrate();
                 casco.SetActive(true);
                 puedePerder = false;
             }
@@ -223,6 +223,7 @@ public class MovimientoAcelerometro : MonoBehaviour
         {
             if (!iman.activeSelf)
             {
+                Handheld.Vibrate();
                 iman.SetActive(true);
                 HUD1.instancia.MostrarPanelBonus();
             }
@@ -244,6 +245,7 @@ public class MovimientoAcelerometro : MonoBehaviour
                 Debug.Log("SinCasco");
                 Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
                 rb.isKinematic = true;
+
                 Destruida();
             }
             else
@@ -275,6 +277,7 @@ public class MovimientoAcelerometro : MonoBehaviour
 
     public void Destruida()
     {
+        Handheld.Vibrate();
         rg.velocity = Vector3.zero;
         speed = 0;
         transform.GetChild(1).GetComponent<Animator>().enabled = false;

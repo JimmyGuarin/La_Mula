@@ -89,7 +89,7 @@ public class Lanzador : MonoBehaviour {
 
         
         Vector3 velocidad = new Vector3(0, vertSpeed, horSpeed);
-        Debug.Log(bonusDorado);
+
         dinamita = Random.value > 0.6f;
         if(colisiona==false)
         {
