@@ -20,10 +20,13 @@ public class ColisionesMula : MonoBehaviour
     {
         if (other.gameObject.tag.Equals("Obtaculo"))
         {
+            Debug.Log("COlisioneObs");
             if (!casco.activeSelf)
             {
                 
                 other.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+                other.gameObject.GetComponent<BoxCollider>().enabled = false;
+
             }
 
 
