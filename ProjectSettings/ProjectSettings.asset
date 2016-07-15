@@ -89,7 +89,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleIdentifier: com.Sumset.Prueba
+  bundleIdentifier: com.Sumset.SoyMula
   bundleVersion: 1.0
   preloadedAssets: []
   metroEnableIndependentInputSource: 0
@@ -99,7 +99,7 @@ PlayerSettings:
   productGUID: e14fc67aceb0ae44fba775e7ed6642d9
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 19
-  AndroidPreferredInstallLocation: 1
+  AndroidPreferredInstallLocation: 2
   aotOptions: 
   apiCompatibilityLevel: 2
   stripEngineCode: 1

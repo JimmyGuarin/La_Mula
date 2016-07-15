@@ -43,10 +43,12 @@ public class HUD1 : MonoBehaviour
 
     public void Awake()
     {
-        DontDestroyOnLoad(this);
+        //DontDestroyOnLoad(this);
         velocidad = 30;
         distancia = 0;
-        nivelActual =(Nivel) Serializable.niveles.niveles[Serializable.nivelActual - 1];
+        
+        
+        
     }
 
 
@@ -60,6 +62,12 @@ public class HUD1 : MonoBehaviour
         Restablecer();
         textoVelocidad.text = "30 Km/h";
         corriendo = false;
+        nivelActual = (Nivel)Serializable.niveles.niveles[0];
+        Debug.Log(nivelActual + " Nivel"+ nivelActual.objetivos[0].estado);
+        Debug.Log(nivelActual + " Nivel" + nivelActual.objetivos[1].estado);
+        Debug.Log(nivelActual + " Nivel" + nivelActual.objetivos[2].estado);
+        Debug.Log(nivelActual + " Nivel" + nivelActual.objetivos[3].estado);
+        Debug.Log(nivelActual + " Nivel" + nivelActual.objetivos[4].estado);
 
         if (instancia == null)
         {
@@ -104,6 +112,7 @@ public class HUD1 : MonoBehaviour
     {
         encholadas++;
         TextAtrapadas.text = "" + encholadas;
+        Handheld.Vibrate();
 
     }
 
@@ -128,13 +137,7 @@ public class HUD1 : MonoBehaviour
     }
 
     public void Salir()
-    {
-
-        Serializable.Load();
-        Debug.Log(Serializable.niveles);
-        Debug.Log("Entra");
-        Nivel n = (Nivel)Serializable.niveles.niveles[0];
-        n.VerificarObjetivos();        
+    {     
         Serializable.Save();
         Time.timeScale = 1;
         Destroy(this.gameObject);
@@ -160,6 +163,7 @@ public class HUD1 : MonoBehaviour
     public void Reiniciar()
     {
         corriendo = true;
+        Destroy(this.gameObject);
         SceneManager.LoadScene(1);
         
     }
@@ -177,7 +181,6 @@ public class HUD1 : MonoBehaviour
         textoDistancia.text = "0 Mts.";
         textoPerdidasFinal.text = textoPerdidas.text;
         textoAtrapadasFinal.text = TextAtrapadas.text;
-        Restablecer();
         panelDerrota.SetActive(true);
         BonusIman.SetActive(false);
         BonusIman.GetComponentInChildren<Slider>().value = 1;
@@ -208,6 +211,8 @@ public class HUD1 : MonoBehaviour
 
     public void MostrarObjetivo(Objetivo obj)
     {
+       
+        
         panelObjetivos.transform.GetChild(0).GetComponent<Text>().text = obj.nombre;
         panelObjetivos.transform.GetChild(1).GetComponent<Text>().text = obj.descripcion;
         panelObjetivos.GetComponent<Animation>().Play();
