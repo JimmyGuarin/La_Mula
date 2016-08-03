@@ -9,19 +9,33 @@ public class HUD1 : MonoBehaviour
     
     
     public static HUD1 instancia;
-    public Text TextAtrapadas;
-    public Text textoAtrapadasFinal;
-    public Text textoPerdidasFinal;
-    public Text textoPerdidas;
-    public Text textoVelocidad;
-    public Text textoDistancia;
-    public GameObject panelDerrota;
-    public int velocidad;
-    public GameObject BonusIman;
-    public GameObject Mula;
-    private bool corriendo;
+    public Text persistencia;
 
-    private Nivel nivelActual;
+   public Text TextAtrapadas;
+   public Text textoAtrapadasFinal;
+   public Text TextOroBarrilesNormales;
+
+   public Text TextAtrapadasOro;
+   public Text TextAtrapadasOroFinal;
+   public Text TextOroBarrilesOro;
+
+   public Text textoPerdidasFinal;
+   public Text textoPerdidas;
+
+   public Text textoOroTotal;
+
+   public Text textoVelocidad;
+   public Text textoDistancia;
+   public GameObject panelDerrota;
+   public int velocidad;
+   public GameObject BonusIman;
+   public GameObject Mula;
+
+
+   private int valorBarrilOro = 50;
+   private int valorBarrilNormal = 5;
+   private bool corriendo;
+   private Nivel nivelActual;
 
 
     //Propiedades para verificar objetivos
@@ -47,14 +61,8 @@ public class HUD1 : MonoBehaviour
         //DontDestroyOnLoad(this);
         velocidad = 30;
         distancia = 0;
-        
-        
-        
+        persistencia.text = Application.persistentDataPath;
     }
-
-
-
-
 
     // Use this for initialization
     void Start()
@@ -64,14 +72,21 @@ public class HUD1 : MonoBehaviour
         textoVelocidad.text = "30 Km/h";
         corriendo = false;
 
-        nivelActual = (Nivel)Serializable.niveles.niveles[0];
 
+
+        if(Serializable.niveles == null)
+        {
+            MostrarPanelDerrota();
+            
+            Time.timeScale = 0;
+        }
+        nivelActual = (Nivel)Serializable.niveles.niveles[0];
 
         if (instancia == null)
         {
             instancia = this;
-            Time.timeScale = 0;
             IniciarJuego();
+            //MostrarPanelDerrota();
 
         }
 
@@ -120,6 +135,14 @@ public class HUD1 : MonoBehaviour
 
     }
 
+    public void EncholarDorado()
+    {
+        BarrilesDorados++;
+        TextAtrapadasOro.text = "" + BarrilesDorados;
+        Handheld.Vibrate();
+    }
+
+
     public void Perdida()
     {
         perdidas++;
@@ -154,6 +177,7 @@ public class HUD1 : MonoBehaviour
     {
         perdidas = 0;
         encholadas = 0;
+        BarrilesDorados = 0;
         distancia = 0;
         dinamitasEsquivadas = 0;
         imanesAtrapados = 0;
@@ -181,13 +205,21 @@ public class HUD1 : MonoBehaviour
 
     public void MostrarPanelDerrota()
     {
-        Time.timeScale = 0;
         textoDistancia.text = "0 Mts.";
         textoPerdidasFinal.text = textoPerdidas.text;
         textoAtrapadasFinal.text = TextAtrapadas.text;
+        TextAtrapadasOroFinal.text = TextAtrapadasOro.text;
+
+        int oroConseguido = encholadas * valorBarrilNormal + BarrilesDorados * valorBarrilOro;
+
+        TextOroBarrilesNormales.text = "" + encholadas * valorBarrilNormal;
+        TextOroBarrilesOro.text= "" + BarrilesDorados * valorBarrilOro;
+        textoOroTotal.text = "" + oroConseguido;
+
         panelDerrota.SetActive(true);
         BonusIman.SetActive(false);
         BonusIman.GetComponentInChildren<Slider>().value = 1;
+        Time.timeScale = 0;
     }
     public void MostrarPanelBonus()
     {

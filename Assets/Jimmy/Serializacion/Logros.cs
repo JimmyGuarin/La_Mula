@@ -21,7 +21,7 @@ public class Logros{
 
     public Objetivo VerificarLogros()
     {
-        if ((int)metrosRecorridos==5000 && !logros[0].estado)
+        if ((int)metrosRecorridos>=5000&& !logros[0].estado)
         {
             logros[0].estado= true;
             return logros[0];
