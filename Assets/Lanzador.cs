@@ -91,7 +91,7 @@ public class Lanzador : MonoBehaviour {
 
             if (dinamita)
             {                
-                Lanzar(dinamitas[indiceDimamita], transform.position + new Vector3(0, -2, 0));
+                Lanzar(dinamitas[indiceDimamita], transform.position);
                 EstablecerIndiceArray(ref indiceDimamita);
             }
             else if(bonusDorado)
