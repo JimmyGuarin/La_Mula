@@ -11,20 +11,24 @@ public class CanvasNiveles : MonoBehaviour {
     public int nivel;
 
     public GameObject[] objetivosNivel1;
+    public GameObject[] logros;
+    public Text[] textosAcumulados;
 
 	// Use this for initialization
 	void Start () {
 
         Debug.Log(Application.persistentDataPath);
         Serializable.Load();
-        if (Serializable.niveles == null)
+        if (Serializable.niveles!= null)
         {
-            Serializable.niveles = new ManejadorNiveles();
+            VerificarObjetivosCompletados();
+            textosAcumulados[0].text = "" + (int)Serializable.niveles.logros.metrosRecorridos;
+            textosAcumulados[1].text = "" + (int)Serializable.niveles.logros.objetivosDerribados;
         }
         else
         {
-            VerificarObjetivosCompletados();
-            Debug.Log(Serializable.niveles.logros.metrosRecorridos);
+            Serializable.niveles = new ManejadorNiveles();
+            Serializable.Save();
         }
 
 
@@ -79,21 +83,22 @@ public class CanvasNiveles : MonoBehaviour {
 
     public void VerificarObjetivosCompletados()
     {
-
         foreach(Nivel n in Serializable.niveles.niveles)
         {
             for(int i = 0; i < n.objetivos.Length; i++)
             {
-
                 if (n.objetivos[i].estado)
                     objetivosNivel1[i].GetComponent<Image>().color = Color.white;
-
             }
-
         }
 
+        for(int i = 0; i < Serializable.niveles.logros.logros.Length; i++)
+        {
 
-
+            if (Serializable.niveles.logros.logros[i].estado == true)
+                logros[i].GetComponent<RawImage>().color = Color.white;
+        }
     }
+
 
 }

@@ -205,7 +205,7 @@ public class MovimientoAcelerometro : MonoBehaviour
     {
         if (other.gameObject.tag.Equals("GameController"))
         {
-            ManejadorSuelo.instancia.GenerarSuelo();
+           // ManejadorSuelo.instancia.GenerarSuelo();
         }
 
         if (other.gameObject.tag.Equals("Casco"))
@@ -217,7 +217,7 @@ public class MovimientoAcelerometro : MonoBehaviour
                 puedePerder = false;
             }
             HUD1.instancia.cascosAtrapados++;
-            Destroy(other.transform.parent.gameObject);
+            other.transform.parent.gameObject.SetActive(false);
         }
         if(other.gameObject.tag.Equals("Iman"))
         {
@@ -228,7 +228,7 @@ public class MovimientoAcelerometro : MonoBehaviour
                 HUD1.instancia.MostrarPanelBonus();
             }
             HUD1.instancia.imanesAtrapados++;
-            Destroy(other.gameObject);
+            other.gameObject.SetActive(false);
         }
     }
 
@@ -250,7 +250,7 @@ public class MovimientoAcelerometro : MonoBehaviour
             }
             else
             {
-
+                Handheld.Vibrate();
                 Debug.Log("destruyendoCasco");
                 Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
                 //rb.isKinematic = true;
@@ -269,10 +269,16 @@ public class MovimientoAcelerometro : MonoBehaviour
             tocandoTierra = true;
         }
     }
-    
+
     void cambiarEstado()
     {
-        puedePerder = true;
+        if (!puedePerder)
+        {
+            puedePerder = true;
+            Serializable.niveles.logros.objetivosDerribados++;
+        }
+
+        
     }
 
     public void Destruida()
