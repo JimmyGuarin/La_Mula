@@ -62,41 +62,22 @@ public class HUD1 : MonoBehaviour
         velocidad = 30;
         distancia = 0;
         persistencia.text = Application.persistentDataPath;
+
     }
 
     // Use this for initialization
     void Start()
     {
 
-        Restablecer();
+       
         textoVelocidad.text = "30 Km/h";
         corriendo = false;
-
-
-
-        if(Serializable.niveles == null)
-        {
-            MostrarPanelDerrota();
-            
-            Time.timeScale = 0;
-        }
+        
+        Serializable.niveles = new ManejadorNiveles();
         nivelActual = (Nivel)Serializable.niveles.niveles[0];
 
-        if (instancia == null)
-        {
-            instancia = this;
-            IniciarJuego();
-            //MostrarPanelDerrota();
-
-        }
-
-        else
-        {
-            Time.timeScale = 1;
-            Destroy(this.gameObject);
-        }
-
-
+        instancia = this;
+        IniciarJuego();
 
     }
 
