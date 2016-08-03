@@ -69,7 +69,7 @@ public class Impulsar : MonoBehaviour
         {
             HUD1.instancia.Perdida();
             gameObject.SetActive(false);
-
+            
         }
     }
 
