@@ -11,10 +11,7 @@ public class ActivarExplosión : MonoBehaviour
 
     }
 
-    public void activarExplosion()
-    {
-
-    }
+    
 
     public void OnCollisionEnter(Collision collision)
     {       
@@ -32,8 +29,8 @@ public class ActivarExplosión : MonoBehaviour
         {
             HUD1.instancia.dinamitasEsquivadas++;
         }
-        
-           Destroy(gameObject);             
+
+        gameObject.SetActive(false);            
     }
 
     // Update is called once per frame

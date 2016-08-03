@@ -9,6 +9,8 @@ public class Impulsar : MonoBehaviour
     public GameObject canastoDerecho;
     public GameObject Iman;
     public float mitadTiempoVuelo;
+    public bool dorado;
+
 
     private Vector3 objetivo;
     private Rigidbody rg;
@@ -19,12 +21,10 @@ public class Impulsar : MonoBehaviour
     {
         EnBajada = false;
         rg = GetComponent<Rigidbody>();
-        Invoke("MitadTiempoVuelo",mitadTiempoVuelo);
-
         MovimientoAcelerometro mBurra = GameObject.Find("Burra").GetComponent<MovimientoAcelerometro>();
         canastoIzquierdo = mBurra.refCanastoIzquierdo;
         canastoDerecho = mBurra.refCanastoDerecho;
-        Iman = mBurra.iman;
+        Iman = mBurra.iman;        
     }
 
     // Update is called once per frame
@@ -41,7 +41,7 @@ public class Impulsar : MonoBehaviour
             rg.isKinematic = true;
             return;
         }
-       
+
     }
 
 
@@ -51,9 +51,15 @@ public class Impulsar : MonoBehaviour
 
         if (other.gameObject.tag.Equals("Respawn"))
         {
-  
-            HUD1.instancia.Encholar();
-            Destroy(this.gameObject);
+
+            if (!dorado)
+                HUD1.instancia.Encholar();
+            else
+                HUD1.instancia.EncholarDorado();
+
+
+            gameObject.SetActive(false);
+            Debug.Log("EntraDesactiva");
         }
     }
 
@@ -62,10 +68,22 @@ public class Impulsar : MonoBehaviour
         if (collision.gameObject.name.Equals("Suelo"))
         {
             HUD1.instancia.Perdida();
+            gameObject.SetActive(false);
+
         }
     }
 
+    public void OnDisable()
+    {
+        CancelInvoke();
+        rg.isKinematic = false;
+    }
 
+    public void OnEnable()
+    {
+        Invoke("MitadTiempoVuelo", mitadTiempoVuelo);
+       
+    }
 
     public void AtraccionIman()
     {
@@ -77,13 +95,16 @@ public class Impulsar : MonoBehaviour
             objetivo = canastoDerecho.transform.position;
 
         transform.position = Vector3.MoveTowards(transform.position, objetivo, 100 * Time.deltaTime);
-        if (Mathf.Abs(transform.position.z-objetivo.z)<2)
+        if (Mathf.Abs(transform.position.z - objetivo.z) < 2)
         {
-            HUD1.instancia.Encholar();
+
+            if (!dorado)
+                HUD1.instancia.Encholar();
+            else
+                HUD1.instancia.EncholarDorado();
+
             GetComponent<Rigidbody>().isKinematic = false;
-
-            Destroy(this.gameObject);
-
+            gameObject.SetActive(false);
         }
     }
 

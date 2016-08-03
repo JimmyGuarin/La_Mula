@@ -18,6 +18,16 @@ public class Destructor : MonoBehaviour
 
     public void OnTriggerEnter(Collider collision)
     {
-        Destroy(collision.gameObject);
+
+        if(collision.tag.Equals("PuntoCaida") || collision.tag.Equals("Caso")|| collision.tag.Equals("Iman"))
+        {
+            collision.gameObject.SetActive(false);
+        }
+        else
+        {
+            if(collision.tag.Equals("Obtaculo"))
+                 Destroy(collision.gameObject);
+        }
+        
     }
 }
