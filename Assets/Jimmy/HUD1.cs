@@ -72,10 +72,16 @@ public class HUD1 : MonoBehaviour
        
         textoVelocidad.text = "30 Km/h";
         corriendo = false;
-        
-        Serializable.niveles = new ManejadorNiveles();
-        nivelActual = (Nivel)Serializable.niveles.niveles[0];
 
+
+        Serializable.Load();
+        if (Serializable.niveles == null)
+        {
+            Serializable.niveles = new ManejadorNiveles();
+           
+        }
+
+        nivelActual = (Nivel)Serializable.niveles.niveles[0];
         instancia = this;
         IniciarJuego();
 
@@ -142,6 +148,7 @@ public class HUD1 : MonoBehaviour
     {
         Time.timeScale = 1f;
         corriendo = true;
+        VerificarObjetosComprados();
     }
 
     public void Salir()
@@ -200,6 +207,10 @@ public class HUD1 : MonoBehaviour
         panelDerrota.SetActive(true);
         BonusIman.SetActive(false);
         BonusIman.GetComponentInChildren<Slider>().value = 1;
+
+        PlayerPrefs.SetInt("Dinero", PlayerPrefs.GetInt("Dinero") + oroConseguido);
+
+
         Time.timeScale = 0;
     }
     public void MostrarPanelBonus()
@@ -247,6 +258,13 @@ public class HUD1 : MonoBehaviour
         panelObjetivos.GetComponent<Animation>().Play();
     }
 
-
+    public void VerificarObjetosComprados()
+    {
+        if (PlayerPrefs.GetInt("EmpezarCasco") > 0)
+        {
+            Mula.GetComponent<MovimientoAcelerometro>().PonerCasco();
+            PlayerPrefs.SetInt("EmpezarCasco", 0);
+        }
+    }
 
 }

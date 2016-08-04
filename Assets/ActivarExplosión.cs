@@ -5,10 +5,11 @@ public class ActivarExplosión : MonoBehaviour
 {
 
     public GameObject explosion;
+    public MovimientoAcelerometro mBurra;
     // Use this for initialization
     void Start()
     {
-
+        mBurra = GameObject.Find("Burra").GetComponent<MovimientoAcelerometro>();
     }
 
     
@@ -17,9 +18,8 @@ public class ActivarExplosión : MonoBehaviour
     {       
            Instantiate(explosion, transform.position, transform.rotation);
 
-        if (collision.gameObject.tag.Equals("Player"))
+        if (collision.gameObject==mBurra.gameObject)
         {
-            MovimientoAcelerometro mBurra = GameObject.Find("Burra").GetComponent<MovimientoAcelerometro>();
             if (!mBurra.casco.activeSelf)
                 mBurra.Destruida();
             else
