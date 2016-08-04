@@ -70,7 +70,6 @@ public class ManejadorSuelo : MonoBehaviour {
 
             aux.transform.position = pos.transform.position - (Vector3.forward * distanciaTerrenos);
             aux.GetComponent<Collider>().enabled = true;
-            Debug.Log("Entra");
             terrenoActual.RemoveAt(0);
             terrenoActual.Add(aux);
         }

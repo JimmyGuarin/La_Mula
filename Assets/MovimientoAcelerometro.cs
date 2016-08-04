@@ -48,8 +48,8 @@ public class MovimientoAcelerometro : MonoBehaviour
     private Vector3 lp;   //Last touch position
     private float dragDistance;  //minimum distance for a swipe to be registered
 
-
-    bool puedePerder;
+    [HideInInspector]
+    public bool puedePerder;
 
     //Metodo llamado al inicio del script
     public void Start()
@@ -212,9 +212,7 @@ public class MovimientoAcelerometro : MonoBehaviour
         {
             if (!casco.activeSelf)
             {
-                Handheld.Vibrate();
-                casco.SetActive(true);
-                puedePerder = false;
+                PonerCasco();
             }
             HUD1.instancia.cascosAtrapados++;
             other.transform.parent.gameObject.SetActive(false);
@@ -223,9 +221,7 @@ public class MovimientoAcelerometro : MonoBehaviour
         {
             if (!iman.activeSelf)
             {
-                Handheld.Vibrate();
-                iman.SetActive(true);
-                HUD1.instancia.MostrarPanelBonus();
+                PonerIman();
             }
             HUD1.instancia.imanesAtrapados++;
             other.gameObject.SetActive(false);
@@ -242,7 +238,6 @@ public class MovimientoAcelerometro : MonoBehaviour
             transform.GetChild(0).gameObject.SetActive(false);
             if (!casco.activeSelf && puedePerder)
             {
-                Debug.Log("SinCasco");
                 Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
                 rb.isKinematic = true;
 
@@ -251,7 +246,6 @@ public class MovimientoAcelerometro : MonoBehaviour
             else
             {
                 Handheld.Vibrate();
-                Debug.Log("destruyendoCasco");
                 Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
                 //rb.isKinematic = true;
                 rb.AddForce(new Vector3(0, 2000, 0));
@@ -296,5 +290,19 @@ public class MovimientoAcelerometro : MonoBehaviour
     {
         transform.GetChild(0).gameObject.SetActive(true);
         casco.gameObject.SetActive(false);
+    }
+
+    public void PonerCasco()
+    {
+        Handheld.Vibrate();
+        casco.SetActive(true);
+        puedePerder = false;
+    }
+
+    public void PonerIman()
+    {
+        Handheld.Vibrate();
+        iman.SetActive(true);
+        HUD1.instancia.MostrarPanelBonus();
     }
 }
